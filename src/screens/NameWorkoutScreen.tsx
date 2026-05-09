@@ -1,0 +1,63 @@
+import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { AppBar } from '../components/ui/AppBar'
+import { TextInput } from '../components/ui/TextInput'
+import { Button } from '../components/ui/Button'
+
+export function NameWorkoutScreen() {
+  const navigate = useNavigate()
+  const [name, setName] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [])
+
+  const handleContinue = () => {
+    if (!name.trim()) return
+    navigate('/create/exercises', { state: { workoutName: name.trim() } })
+  }
+
+  return (
+    <motion.div
+      initial={{ x: '100%', opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: '-30%', opacity: 0 }}
+      transition={{ duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
+      className="flex flex-col min-h-screen"
+    >
+      <AppBar mode="nav" title="New workout" onBack={() => navigate(-1)} />
+
+      <main className="flex-1 flex flex-col px-4 pt-6 pb-8 gap-6" id="main-content">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-lg font-medium text-obsidian">Name your workout</h2>
+          <p className="text-sm font-light text-sage">Give it a name you&apos;ll recognise.</p>
+        </div>
+
+        <TextInput
+          ref={inputRef}
+          label="Workout name"
+          placeholder="e.g. Push day, Leg day…"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleContinue()}
+          maxLength={60}
+          aria-required="true"
+        />
+
+        <div className="mt-auto">
+          <Button
+            variant="primary"
+            fullWidth
+            disabled={!name.trim()}
+            onClick={handleContinue}
+            aria-label="Continue to add exercises"
+          >
+            Continue
+          </Button>
+        </div>
+      </main>
+    </motion.div>
+  )
+}

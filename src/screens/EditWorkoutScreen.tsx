@@ -1,0 +1,103 @@
+import { useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { useWorkoutStore } from '../store/useWorkoutStore'
+import { AppBar } from '../components/ui/AppBar'
+import { TextInput } from '../components/ui/TextInput'
+import { ExerciseSearch } from '../components/ExerciseSearch'
+import { Button } from '../components/ui/Button'
+import { WorkoutSet } from '../types'
+
+export function EditWorkoutScreen() {
+  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const { workouts, updateWorkout } = useWorkoutStore()
+  const workout = workouts.find((w) => w.id === id)
+
+  const [name, setName] = useState(workout?.name ?? '')
+  const [selectedNames, setSelectedNames] = useState<string[]>(
+    workout?.exercises.map((e) => e.name) ?? []
+  )
+
+  if (!workout) {
+    return (
+      <div className="flex flex-col min-h-screen items-center justify-center gap-4 px-4">
+        <p className="text-sm text-sage">Workout not found.</p>
+        <Button variant="ghost" onClick={() => navigate('/home')}>
+          Go home
+        </Button>
+      </div>
+    )
+  }
+
+  const toggle = (exerciseName: string) => {
+    setSelectedNames((prev) =>
+      prev.includes(exerciseName)
+        ? prev.filter((n) => n !== exerciseName)
+        : [...prev, exerciseName]
+    )
+  }
+
+  const handleSave = () => {
+    if (!name.trim() || selectedNames.length === 0) return
+
+    // Preserve existing sets for exercises that are still selected
+    const exerciseDefs = selectedNames.map((exerciseName) => {
+      const existing = workout.exercises.find((e) => e.name === exerciseName)
+      const defaultSet: WorkoutSet = {
+        id: Math.random().toString(36).slice(2, 11),
+        weight: 0,
+        reps: 10,
+        completed: false,
+      }
+      return {
+        id: existing?.id,
+        name: exerciseName,
+        sets: existing?.sets ?? [defaultSet],
+      }
+    })
+
+    updateWorkout(workout.id, name.trim(), exerciseDefs)
+    navigate(`/workout/${workout.id}`, { replace: true })
+  }
+
+  return (
+    <motion.div
+      initial={{ x: '100%', opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: '-30%', opacity: 0 }}
+      transition={{ duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
+      className="flex flex-col min-h-screen"
+    >
+      <AppBar mode="nav" title="Edit workout" onBack={() => navigate(-1)} />
+
+      <main className="flex-1 flex flex-col px-4 pt-4 pb-8 gap-6" id="main-content">
+        <TextInput
+          label="Workout name"
+          placeholder="e.g. Push day"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          maxLength={60}
+          aria-required="true"
+        />
+
+        <div className="flex flex-col gap-2">
+          <h2 className="text-xs font-medium text-seaweed tracking-wide">Exercises</h2>
+          <ExerciseSearch selected={selectedNames} onToggle={toggle} />
+        </div>
+
+        <div className="mt-auto">
+          <Button
+            variant="primary"
+            fullWidth
+            disabled={!name.trim() || selectedNames.length === 0}
+            onClick={handleSave}
+            aria-label="Save changes"
+          >
+            Save changes
+          </Button>
+        </div>
+      </main>
+    </motion.div>
+  )
+}

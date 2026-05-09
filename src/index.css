@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    min-height: 100svh;
+  }
+
+  html {
+    background: linear-gradient(160deg, #daeaea 0%, #f6f2ee 45%, #f6f1eb 100%);
+    background-attachment: fixed;
+  }
+
+  body {
+    font-family: 'Lexend', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: transparent;
+  }
+
+  #root {
+    background: transparent;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #4b7978;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(160deg, #daeaea 0%, #f6f2ee 45%, #f6f1eb 100%);
+  }
+
+  .input-gradient {
+    background: linear-gradient(135deg, rgba(218, 234, 234, 0.35) 0%, rgba(246, 241, 235, 0.35) 100%);
+  }
+}
