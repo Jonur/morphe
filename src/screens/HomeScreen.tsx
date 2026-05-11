@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Plus } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useWorkoutStore } from '../store/useWorkoutStore'
 import { AppBar } from '../components/ui/AppBar'
 import { WorkoutCard } from '../components/WorkoutCard'
+import { PlusIcon } from '../components/ui/icons'
 
 export function HomeScreen() {
   const navigate = useNavigate()
@@ -19,7 +19,7 @@ export function HomeScreen() {
     >
       <AppBar mode="home" />
 
-      <main className="flex-1 flex flex-col px-4 pt-2 pb-8 gap-3" id="main-content">
+      <main className="flex-1 flex flex-col px-4 pt-4 pb-8 gap-3" id="main-content">
         {/* Workouts list */}
         <AnimatePresence mode="popLayout">
           {workouts.length === 0 ? (
@@ -28,7 +28,7 @@ export function HomeScreen() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="text-sm font-light text-sage text-center mt-8"
+              className="text-base font-light text-patina text-center mt-8"
               aria-live="polite"
             >
               No workouts yet — create your first one below.
@@ -54,13 +54,13 @@ export function HomeScreen() {
           aria-label="Create new workout"
           className={[
             'w-full mt-2 flex items-center justify-center gap-2',
-            'border border-dashed border-mist rounded-card py-4',
-            'text-sm font-medium text-patina',
+            'border border-dashed border-sage rounded-card py-5',
+            'text-base font-medium text-patina',
             'hover:bg-frost transition-colors duration-150',
             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina',
           ].join(' ')}
         >
-          <Plus size={16} strokeWidth={2} aria-hidden="true" />
+          <PlusIcon size={16} aria-hidden="true" />
           Create workout
         </motion.button>
       </main>

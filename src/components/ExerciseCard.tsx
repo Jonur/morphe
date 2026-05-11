@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Minus, Plus } from 'lucide-react'
 import { Exercise } from '../types'
 import { SetField } from './ui/SetField'
 import { Checkbox } from './ui/Checkbox'
+import { SubtractCircleIcon, AddCircleIcon } from './ui/icons'
 
 interface ExerciseCardProps {
   workoutId: string
@@ -22,16 +22,17 @@ export function ExerciseCard({
 }: ExerciseCardProps) {
   return (
     <article
-      className="bg-white rounded-card shadow-soft border border-frost overflow-hidden"
+      className="bg-white rounded-2xl border border-frost overflow-hidden"
       aria-label={`Exercise: ${exercise.name}`}
     >
-      <div className="px-4 pt-4 pb-3">
-        <h3 className="text-sm font-medium text-obsidian">{exercise.name}</h3>
+      {/* Exercise name header */}
+      <div className="px-3 pt-3 pb-2.5">
+        <h3 className="text-base font-normal text-seaweed">{exercise.name}</h3>
       </div>
 
       <hr className="border-frost" />
 
-      {/* Sets */}
+      {/* Sets rows */}
       <div className="divide-y divide-frost">
         <AnimatePresence initial={false}>
           {exercise.sets.map((set, idx) => (
@@ -43,27 +44,28 @@ export function ExerciseCard({
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <div className="flex items-center gap-3 px-4 py-3">
+              <div className="flex items-center gap-3 px-3 py-3">
                 <span
-                  className="text-2xs font-medium text-sage tabular-nums w-4 text-center"
+                  className="text-base font-normal text-seaweed tabular-nums w-4 text-center"
                   aria-label={`Set ${idx + 1}`}
                 >
                   {idx + 1}
                 </span>
 
-                <div className="flex gap-3 flex-1">
+                <div className="flex gap-3 flex-1 justify-center">
                   <SetField
                     label="kg"
                     value={set.weight}
                     onChange={(v) => onUpdateSet(set.id, 'weight', v)}
                     step={2.5}
-                    unit=""
+                    min={0}
                   />
                   <SetField
                     label="reps"
                     value={set.reps}
                     onChange={(v) => onUpdateSet(set.id, 'reps', v)}
                     step={1}
+                    min={1}
                   />
                 </div>
 
@@ -71,7 +73,7 @@ export function ExerciseCard({
                   checked={set.completed}
                   onChange={() => onToggleSet(set.id)}
                   label={`Mark set ${idx + 1} complete`}
-                  size={22}
+                  size={20}
                 />
               </div>
             </motion.div>
@@ -81,29 +83,31 @@ export function ExerciseCard({
 
       {/* Sets control row */}
       <hr className="border-frost" />
-      <div className="flex items-center justify-between px-4 py-3">
-        <span className="text-xs font-light text-sage">
+      <div className="flex items-center justify-between px-3 py-3">
+        <span className="text-base font-normal text-seaweed">
           {exercise.sets.length} set{exercise.sets.length !== 1 ? 's' : ''}
         </span>
-        <div className="flex items-center gap-4">
+
+        <div className="flex items-center gap-3">
           <motion.button
-            whileTap={{ scale: 0.85 }}
+            whileTap={{ scale: 0.82 }}
             type="button"
             onClick={onRemoveSet}
             disabled={exercise.sets.length <= 1}
             aria-label={`Remove last set from ${exercise.name}`}
-            className="text-patina disabled:text-frost focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded"
+            className="flex items-center justify-center w-6 h-6 bg-white rounded-full text-patina disabled:opacity-30 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
           >
-            <Minus size={16} strokeWidth={2} />
+            <SubtractCircleIcon size={16} aria-hidden="true" />
           </motion.button>
+
           <motion.button
-            whileTap={{ scale: 0.85 }}
+            whileTap={{ scale: 0.82 }}
             type="button"
             onClick={onAddSet}
             aria-label={`Add set to ${exercise.name}`}
-            className="text-patina focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded"
+            className="flex items-center justify-center w-6 h-6 bg-white rounded-full text-patina focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
           >
-            <Plus size={16} strokeWidth={2} />
+            <AddCircleIcon size={16} aria-hidden="true" />
           </motion.button>
         </div>
       </div>

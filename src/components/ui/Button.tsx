@@ -10,12 +10,12 @@ interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-obsidian text-white font-medium hover:bg-seaweed active:bg-seaweed disabled:opacity-40',
+    'bg-obsidian text-white font-medium hover:bg-seaweed active:bg-seaweed disabled:bg-obsidian disabled:opacity-50',
   secondary:
-    'border border-sage text-seaweed font-medium bg-transparent hover:bg-frost active:bg-dew disabled:opacity-40',
+    'border border-sage text-obsidian font-medium bg-transparent hover:bg-frost active:bg-dew disabled:opacity-40',
   ghost: 'text-patina font-medium bg-transparent hover:bg-frost active:bg-dew disabled:opacity-40',
   dashed:
-    'border border-dashed border-mist text-patina font-medium bg-transparent hover:bg-frost active:bg-dew disabled:opacity-40',
+    'border border-dashed border-sage text-patina font-medium bg-transparent hover:bg-frost active:bg-dew disabled:opacity-40',
 }
 
 export function Button({
@@ -33,7 +33,7 @@ export function Button({
       disabled={disabled}
       className={[
         'inline-flex items-center justify-center gap-2',
-        'rounded-pill px-6 py-3.5 text-sm',
+        'rounded-pill px-5 py-5 text-base',
         'transition-colors duration-150',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina focus-visible:ring-offset-1',
         'cursor-pointer disabled:cursor-not-allowed',

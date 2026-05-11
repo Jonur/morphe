@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { MoreVertical, Pencil, Eye, Trash2 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { Workout } from '../types'
 import { useWorkoutStore } from '../store/useWorkoutStore'
 import { ContextMenu } from './ui/ContextMenu'
 import { Modal } from './ui/Modal'
-import { Button } from './ui/Button'
+import { VerticalMenuIcon, EyeIcon, PencilIcon, TrashIcon } from './ui/icons'
 
 interface WorkoutCardProps {
   workout: Workout
@@ -24,17 +23,17 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
   const menuItems = [
     {
       label: 'View workout',
-      icon: <Eye size={16} />,
+      icon: <EyeIcon size={20} />,
       onClick: () => navigate(`/workout/${workout.id}`),
     },
     {
       label: 'Edit workout',
-      icon: <Pencil size={16} />,
+      icon: <PencilIcon size={20} />,
       onClick: () => navigate(`/workout/${workout.id}/edit`),
     },
     {
       label: 'Delete',
-      icon: <Trash2 size={16} />,
+      icon: <TrashIcon size={20} />,
       onClick: () => setDeleteOpen(true),
       danger: true,
     },
@@ -48,23 +47,23 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8, scale: 0.97 }}
         transition={{ duration: 0.25 }}
-        className="bg-white rounded-card shadow-soft border border-frost p-4 flex items-center justify-between"
+        className="bg-white rounded-card border border-frost p-3 flex items-center justify-between"
         aria-label={`Workout: ${workout.name}`}
       >
         <button
           onClick={() => navigate(`/workout/${workout.id}`)}
-          className="flex-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina rounded-lg"
+          className="flex-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina rounded-lg py-1"
           aria-label={`View ${workout.name}`}
         >
-          <h3 className="text-sm font-medium text-obsidian leading-tight">{workout.name}</h3>
-          <p className="text-xs font-light text-sage mt-0.5">
+          <h3 className="text-base font-normal text-seaweed leading-tight">{workout.name}</h3>
+          <p className="text-sm font-light text-patina mt-0.5">
             {exerciseCount} exercise{exerciseCount !== 1 ? 's' : ''} · {totalSets} set
             {totalSets !== 1 ? 's' : ''}
           </p>
         </button>
 
         <motion.button
-          whileTap={{ scale: 0.85 }}
+          whileTap={{ scale: 0.82 }}
           onClick={(e) => {
             e.stopPropagation()
             setMenuOpen(true)
@@ -72,9 +71,9 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
           aria-label={`Options for ${workout.name}`}
           aria-expanded={menuOpen}
           aria-haspopup="menu"
-          className="w-8 h-8 flex items-center justify-center rounded-full -mr-1 text-sage hover:text-obsidian focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina transition-colors"
+          className="w-8 h-8 flex items-center justify-center rounded-full -mr-0.5 text-seaweed hover:text-obsidian focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina transition-colors"
         >
-          <MoreVertical size={18} strokeWidth={2} />
+          <VerticalMenuIcon size={16} aria-hidden="true" />
         </motion.button>
       </motion.article>
 
@@ -85,41 +84,48 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
         ariaLabel={`${workout.name} options`}
       />
 
+      {/* Delete confirmation modal */}
       <Modal open={deleteOpen} onClose={() => setDeleteOpen(false)} ariaLabel="Delete workout">
-        <div className="p-6 flex flex-col items-center gap-4 text-center">
+        <div className="p-6 flex flex-col items-center gap-5 text-center">
+          {/* Icon */}
           <div
-            className="w-12 h-12 rounded-full bg-frost flex items-center justify-center"
+            className="flex items-center justify-center rounded-full p-3"
+            style={{ background: 'rgba(234, 60, 94, 0.2)' }}
             aria-hidden="true"
           >
-            <Trash2 size={20} className="text-coral" />
+            <TrashIcon size={24} className="text-coral" />
           </div>
-          <div>
-            <h2 className="text-base font-medium text-obsidian">Delete workout?</h2>
-            <p className="text-sm font-light text-sage mt-1">
-              &ldquo;{workout.name}&rdquo; will be permanently removed.
+
+          {/* Text */}
+          <div className="flex flex-col gap-2">
+            <h2 className="text-2xl font-semibold text-seaweed">Delete workout?</h2>
+            <p className="text-base font-light text-seaweed">
+              <span className="font-normal">&ldquo;{workout.name}&rdquo;</span> will be permanently
+              removed.
             </p>
           </div>
-          <div className="flex gap-3 w-full pt-1">
-            <Button
-              variant="secondary"
-              fullWidth
+
+          {/* Buttons — unequal widths per Figma */}
+          <div className="flex gap-3 w-full">
+            <button
               onClick={() => setDeleteOpen(false)}
               aria-label="Cancel delete"
+              className="flex items-center justify-center rounded-pill py-5 text-base font-medium text-obsidian border border-sage bg-transparent hover:bg-frost transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+              style={{ width: 157 }}
             >
               Cancel
-            </Button>
-            <Button
-              variant="primary"
-              fullWidth
+            </button>
+            <button
               onClick={() => {
                 deleteWorkout(workout.id)
                 setDeleteOpen(false)
               }}
               aria-label={`Confirm delete ${workout.name}`}
-              className="!bg-coral hover:!bg-rose"
+              className="flex items-center justify-center rounded-pill py-5 text-base font-medium text-white bg-coral hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral"
+              style={{ width: 152 }}
             >
               Delete
-            </Button>
+            </button>
           </div>
         </div>
       </Modal>

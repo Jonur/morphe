@@ -14,7 +14,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
   return (
     <div className="flex flex-col gap-1.5">
       {label && (
-        <label htmlFor={inputId} className="text-xs font-medium text-seaweed tracking-wide">
+        <label htmlFor={inputId} className="text-sm font-normal text-seaweed">
           {label}
         </label>
       )}
@@ -22,9 +22,9 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
         ref={ref}
         id={inputId}
         className={[
-          'w-full rounded-2xl px-4 py-3.5',
-          'text-sm font-light text-obsidian placeholder:text-sage',
-          'input-gradient',
+          'w-full rounded-2xl px-5 py-5',
+          'text-base font-light text-obsidian placeholder:text-sage',
+          'bg-gradient-to-r from-[#f9fafa] to-[#f4f7f7]',
           'border transition-colors duration-200',
           error ? 'border-coral' : 'border-dew focus:border-mist',
           'outline-none focus-visible:ring-2 focus-visible:ring-patina focus-visible:ring-offset-0',

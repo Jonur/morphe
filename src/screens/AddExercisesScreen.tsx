@@ -44,10 +44,12 @@ export function AddExercisesScreen() {
     >
       <AppBar mode="nav" title={workoutName} onBack={() => navigate(-1)} />
 
-      <main className="flex-1 flex flex-col px-4 pt-4 pb-8 gap-6" id="main-content">
-        <div className="flex flex-col gap-1">
-          <h2 className="text-lg font-medium text-obsidian">Add exercises</h2>
-          <p className="text-sm font-light text-sage">Search and select exercises for this session.</p>
+      <main className="flex-1 flex flex-col px-4 pt-6 pb-8 gap-6" id="main-content">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-2xl font-semibold text-seaweed">Add exercises</h2>
+          <p className="text-base font-light text-patina">
+            Search and select exercises for this workout.
+          </p>
         </div>
 
         <div className="flex-1">
@@ -62,15 +64,7 @@ export function AddExercisesScreen() {
             onClick={handleSave}
             aria-label={`Save workout with ${selected.length} exercise${selected.length !== 1 ? 's' : ''}`}
           >
-            Save workout
-            {selected.length > 0 && (
-              <span
-                className="ml-1 w-5 h-5 rounded-full bg-white/20 text-xs flex items-center justify-center"
-                aria-hidden="true"
-              >
-                {selected.length}
-              </span>
-            )}
+            Save and continue
           </Button>
         </div>
       </main>

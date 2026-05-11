@@ -22,7 +22,7 @@ export function EditWorkoutScreen() {
   if (!workout) {
     return (
       <div className="flex flex-col min-h-screen items-center justify-center gap-4 px-4">
-        <p className="text-sm text-sage">Workout not found.</p>
+        <p className="text-base font-light text-patina">Workout not found.</p>
         <Button variant="ghost" onClick={() => navigate('/home')}>
           Go home
         </Button>
@@ -41,7 +41,6 @@ export function EditWorkoutScreen() {
   const handleSave = () => {
     if (!name.trim() || selectedNames.length === 0) return
 
-    // Preserve existing sets for exercises that are still selected
     const exerciseDefs = selectedNames.map((exerciseName) => {
       const existing = workout.exercises.find((e) => e.name === exerciseName)
       const defaultSet: WorkoutSet = {
@@ -71,7 +70,7 @@ export function EditWorkoutScreen() {
     >
       <AppBar mode="nav" title="Edit workout" onBack={() => navigate(-1)} />
 
-      <main className="flex-1 flex flex-col px-4 pt-4 pb-8 gap-6" id="main-content">
+      <main className="flex-1 flex flex-col px-4 pt-6 pb-8 gap-6" id="main-content">
         <TextInput
           label="Workout name"
           placeholder="e.g. Push day"
@@ -82,7 +81,7 @@ export function EditWorkoutScreen() {
         />
 
         <div className="flex flex-col gap-2">
-          <h2 className="text-xs font-medium text-seaweed tracking-wide">Exercises</h2>
+          <h2 className="text-2xl font-semibold text-seaweed">Exercises</h2>
           <ExerciseSearch selected={selectedNames} onToggle={toggle} />
         </div>
 

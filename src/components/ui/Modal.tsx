@@ -42,7 +42,7 @@ export function Modal({ open, onClose, children, ariaLabel }: ModalProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40"
-            style={{ background: 'rgba(31, 39, 38, 0.2)', backdropFilter: 'blur(2px)' }}
+            style={{ background: 'rgba(31, 39, 38, 0.2)' }}
             onClick={onClose}
             aria-hidden="true"
           />
@@ -55,8 +55,12 @@ export function Modal({ open, onClose, children, ariaLabel }: ModalProps) {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.92, opacity: 0, y: 10 }}
             transition={{ type: 'spring', stiffness: 420, damping: 30 }}
-            className="fixed inset-x-4 top-1/2 z-50 -translate-y-1/2 bg-white rounded-3xl shadow-modal overflow-hidden"
-            style={{ maxWidth: 360, margin: '0 auto' }}
+            className="fixed inset-x-4 top-1/2 z-50 -translate-y-1/2 bg-white rounded-3xl overflow-hidden"
+            style={{
+              maxWidth: 360,
+              margin: '0 auto',
+              filter: 'drop-shadow(0px 4px 6px rgba(40, 68, 67, 0.08))',
+            }}
           >
             {children}
           </motion.div>

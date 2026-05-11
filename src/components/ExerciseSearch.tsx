@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, CheckCircle2, X } from 'lucide-react'
+import { SearchIcon, CheckCircleIcon, DeleteXIcon } from './ui/icons'
 import { EXERCISES } from '../data/exercises'
 
 interface ExerciseSearchProps {
@@ -41,9 +41,9 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
         <label htmlFor="exercise-search" className="sr-only">
           Search exercises
         </label>
-        <Search
+        <SearchIcon
           size={16}
-          className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sage pointer-events-none"
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-sage pointer-events-none"
           aria-hidden="true"
         />
         <input
@@ -51,7 +51,7 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
           id="exercise-search"
           type="search"
           autoComplete="off"
-          placeholder="Search exercises…"
+          placeholder="Start typing..."
           value={query}
           onChange={(e) => {
             setQuery(e.target.value)
@@ -63,8 +63,9 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
           aria-controls="exercise-listbox"
           aria-autocomplete="list"
           className={[
-            'w-full pl-9 pr-4 py-3.5 rounded-2xl text-sm font-light text-obsidian placeholder:text-sage',
-            'input-gradient border transition-colors duration-200',
+            'w-full pl-10 pr-5 py-5 rounded-2xl text-base font-light text-obsidian placeholder:text-sage',
+            'bg-gradient-to-r from-[#f9fafa] to-[#f4f7f7]',
+            'border transition-colors duration-200',
             open ? 'border-mist' : 'border-dew',
             'outline-none focus-visible:ring-2 focus-visible:ring-patina',
           ].join(' ')}
@@ -82,7 +83,8 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.15 }}
-            className="bg-haze rounded-2xl border border-frost shadow-soft overflow-hidden"
+            className="bg-white rounded-2xl border border-frost overflow-hidden"
+            style={{ boxShadow: '0px 2px 12px 0px rgba(40, 68, 67, 0.05)' }}
           >
             {results.map((name, i) => {
               const isSelected = selected.includes(name)
@@ -99,17 +101,21 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
                     aria-selected={isSelected}
                     onClick={() => onToggle(name)}
                     className={[
-                      'w-full flex items-center justify-between px-4 py-3 text-sm text-left',
-                      'input-gradient transition-colors duration-100 hover:bg-frost active:bg-dew',
+                      'w-full flex items-center justify-between px-5 py-4 text-base text-left',
+                      'bg-white transition-colors duration-100 hover:bg-frost active:bg-dew',
                       i < results.length - 1 ? 'border-b border-frost' : '',
-                      isSelected ? 'text-obsidian font-medium' : 'text-seaweed font-light',
+                      isSelected ? 'text-seaweed font-normal' : 'text-seaweed font-light',
                     ]
                       .filter(Boolean)
                       .join(' ')}
                   >
                     {name}
                     {isSelected && (
-                      <CheckCircle2 size={16} className="text-coral flex-shrink-0" aria-hidden="true" />
+                      <CheckCircleIcon
+                        size={20}
+                        className="text-coral flex-shrink-0"
+                        aria-hidden="true"
+                      />
                     )}
                   </button>
                 </motion.li>
@@ -128,8 +134,8 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <p className="text-xs font-medium text-sage mb-2 tracking-wide">
-              Selected ({selected.length})
+            <p className="text-sm font-light text-patina mb-2.5">
+              Selected exercises ({selected.length})
             </p>
             <ul className="flex flex-wrap gap-2" aria-label="Selected exercises">
               {selected.map((name) => (
@@ -141,7 +147,7 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
                   exit={{ opacity: 0, scale: 0.85 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 28 }}
                 >
-                  <span className="inline-flex items-center gap-1.5 pl-3 pr-2 py-1.5 rounded-pill bg-frost border border-dew text-xs font-medium text-seaweed">
+                  <span className="inline-flex items-center gap-2 pl-4 pr-3 py-3 rounded-pill bg-white border border-frost text-sm font-normal text-seaweed">
                     {name}
                     <button
                       type="button"
@@ -149,7 +155,7 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
                       aria-label={`Remove ${name}`}
                       className="flex items-center justify-center text-sage hover:text-coral transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded-full"
                     >
-                      <X size={12} strokeWidth={2.5} />
+                      <DeleteXIcon size={10} aria-hidden="true" />
                     </button>
                   </span>
                 </motion.li>

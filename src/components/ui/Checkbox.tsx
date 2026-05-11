@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Check } from 'lucide-react'
 
 interface CheckboxProps {
   checked: boolean
@@ -8,7 +7,7 @@ interface CheckboxProps {
   size?: number
 }
 
-export function Checkbox({ checked, onChange, label, size = 24 }: CheckboxProps) {
+export function Checkbox({ checked, onChange, label, size = 20 }: CheckboxProps) {
   return (
     <button
       type="button"
@@ -31,7 +30,21 @@ export function Checkbox({ checked, onChange, label, size = 24 }: CheckboxProps)
             style={{ width: size, height: size }}
             aria-hidden="true"
           >
-            <Check size={size * 0.5} className="text-white" strokeWidth={2.5} />
+            <svg
+              width={size * 0.55}
+              height={size * 0.55}
+              viewBox="0 0 12 12"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M2.5 6L5 8.5L9.5 3.5"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </motion.span>
         ) : (
           <motion.span
@@ -40,7 +53,7 @@ export function Checkbox({ checked, onChange, label, size = 24 }: CheckboxProps)
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.5, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 500, damping: 28 }}
-            className="rounded-full border-2 border-frost"
+            className="rounded-full border-2 border-dew"
             style={{ width: size, height: size }}
             aria-hidden="true"
           />

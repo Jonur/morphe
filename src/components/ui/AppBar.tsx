@@ -1,5 +1,5 @@
-import { ChevronLeft, MoreVertical } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { BackArrowIcon, VerticalMenuIcon } from './icons'
 
 interface AppBarHomeProps {
   mode: 'home'
@@ -17,10 +17,10 @@ type AppBarProps = AppBarHomeProps | AppBarNavProps
 export function AppBar(props: AppBarProps) {
   if (props.mode === 'home') {
     return (
-      <header className="flex items-center justify-between px-5 pt-14 pb-2" role="banner">
+      <header className="flex items-center px-4 pt-14 pb-2" role="banner">
         <h1
-          className="font-display text-obsidian leading-none tracking-tight"
-          style={{ fontSize: 28 }}
+          className="font-display text-obsidian leading-none select-none"
+          style={{ fontSize: 28, letterSpacing: '0.56px' }}
           aria-label="Morphe workout tracker"
         >
           morphe
@@ -33,20 +33,20 @@ export function AppBar(props: AppBarProps) {
 
   return (
     <header
-      className="relative flex items-center justify-between px-4 pt-14 pb-3"
+      className="relative flex items-center justify-between px-4 pt-14 py-2"
       role="banner"
     >
       <motion.button
-        whileTap={{ scale: 0.9 }}
+        whileTap={{ scale: 0.88 }}
         onClick={onBack}
         aria-label="Go back"
-        className="flex items-center justify-center w-9 h-9 -ml-1 rounded-full focus-visible:ring-2 focus-visible:ring-patina"
+        className="flex items-center justify-center w-9 h-9 -ml-1.5 rounded-full text-obsidian focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
       >
-        <ChevronLeft size={22} className="text-obsidian" strokeWidth={2} />
+        <BackArrowIcon size={24} aria-hidden="true" />
       </motion.button>
 
       <span
-        className="absolute left-1/2 -translate-x-1/2 text-sm font-medium text-obsidian tracking-tight"
+        className="absolute left-1/2 -translate-x-1/2 text-sm font-normal text-seaweed"
         aria-live="polite"
       >
         {title}
@@ -54,12 +54,12 @@ export function AppBar(props: AppBarProps) {
 
       {onMenu ? (
         <motion.button
-          whileTap={{ scale: 0.9 }}
+          whileTap={{ scale: 0.88 }}
           onClick={onMenu}
           aria-label="Open menu"
-          className="flex items-center justify-center w-9 h-9 -mr-1 rounded-full focus-visible:ring-2 focus-visible:ring-patina"
+          className="flex items-center justify-center w-9 h-9 -mr-1.5 rounded-full text-obsidian focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
         >
-          <MoreVertical size={20} className="text-obsidian" strokeWidth={2} />
+          <VerticalMenuIcon size={24} aria-hidden="true" />
         </motion.button>
       ) : (
         <div className="w-9" aria-hidden="true" />

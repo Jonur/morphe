@@ -31,19 +31,19 @@ export function NameWorkoutScreen() {
 
       <main className="flex-1 flex flex-col px-4 pt-6 pb-8 gap-6" id="main-content">
         <div className="flex flex-col gap-2">
-          <h2 className="text-lg font-medium text-obsidian">Name your workout</h2>
-          <p className="text-sm font-light text-sage">Give it a name you&apos;ll recognise.</p>
+          <h2 className="text-2xl font-semibold text-seaweed">Name your workout</h2>
+          <p className="text-base font-light text-patina">Give it a name you&apos;ll recognise.</p>
         </div>
 
         <TextInput
           ref={inputRef}
-          label="Workout name"
           placeholder="e.g. Push day, Leg day…"
           value={name}
           onChange={(e) => setName(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleContinue()}
           maxLength={60}
           aria-required="true"
+          aria-label="Workout name"
         />
 
         <div className="mt-auto">
@@ -52,9 +52,9 @@ export function NameWorkoutScreen() {
             fullWidth
             disabled={!name.trim()}
             onClick={handleContinue}
-            aria-label="Continue to add exercises"
+            aria-label="Save and continue to add exercises"
           >
-            Continue
+            Save and continue
           </Button>
         </div>
       </main>

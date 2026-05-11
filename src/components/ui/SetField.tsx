@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Minus, Plus } from 'lucide-react'
+import { SubtractCircleIcon, AddCircleIcon } from './icons'
 
 interface SetFieldProps {
   value: number
@@ -10,41 +10,45 @@ interface SetFieldProps {
   min?: number
 }
 
-export function SetField({ value, onChange, label, unit, step = 1, min = 0 }: SetFieldProps) {
+export function SetField({ value, onChange, label, step = 1, min = 0 }: SetFieldProps) {
   const increment = () => onChange(value + step)
   const decrement = () => onChange(Math.max(min, value - step))
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      <span className="text-2xs font-medium text-sage tracking-wide uppercase">{label}</span>
-      <div className="flex items-center gap-2 input-gradient rounded-xl border border-dew px-2 py-1.5">
+    <div className="flex flex-col items-center gap-1.5">
+      <div
+        className="flex items-center gap-2 bg-gradient-to-b from-[#f9fafa] to-[#f4f7f7] rounded-2xl border border-frost px-2 py-2"
+      >
         <motion.button
-          whileTap={{ scale: 0.85 }}
+          whileTap={{ scale: 0.82 }}
           transition={{ duration: 0.1 }}
           type="button"
           onClick={decrement}
           aria-label={`Decrease ${label}`}
-          className="text-patina focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded"
+          className="flex items-center justify-center w-6 h-6 bg-white rounded-full text-patina focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
         >
-          <Minus size={14} strokeWidth={2.5} />
+          <SubtractCircleIcon size={16} aria-hidden="true" />
         </motion.button>
 
-        <span className="text-sm font-medium text-obsidian tabular-nums" style={{ minWidth: 30, textAlign: 'center' }}>
+        <span
+          className="text-base font-normal text-seaweed tabular-nums"
+          style={{ minWidth: 28, textAlign: 'center' }}
+        >
           {value}
-          {unit && <span className="text-xs text-patina ml-0.5">{unit}</span>}
         </span>
 
         <motion.button
-          whileTap={{ scale: 0.85 }}
+          whileTap={{ scale: 0.82 }}
           transition={{ duration: 0.1 }}
           type="button"
           onClick={increment}
           aria-label={`Increase ${label}`}
-          className="text-patina focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded"
+          className="flex items-center justify-center w-6 h-6 bg-white rounded-full text-patina focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
         >
-          <Plus size={14} strokeWidth={2.5} />
+          <AddCircleIcon size={16} aria-hidden="true" />
         </motion.button>
       </div>
+      <span className="text-xs font-light text-patina">{label}</span>
     </div>
   )
 }
