@@ -115,6 +115,28 @@ export function CheckCircleIcon({ size = 20, className = '', ...props }: IconPro
   )
 }
 
+/** Circle with × inside — used to clear a search/text input field, 16×16 */
+export function ClearIcon({ size = 16, className = '', ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+      className={className}
+      {...props}
+    >
+      <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.25" />
+      <path
+        d="M5.75 5.75L10.25 10.25M10.25 5.75L5.75 10.25"
+        stroke="currentColor"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
 /** Small × for chip/tag removal */
 export function DeleteXIcon({ size = 10, className = '', ...props }: IconProps) {
   return (

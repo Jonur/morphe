@@ -12,7 +12,7 @@ const config: Config = {
         sage: '#79a3a1',
         // Borders / surfaces
         mist: '#a8cac8',
-        dew: '#daeaea',
+        dew: '#D2E4E4',
         frost: '#e8f2f2',
         haze: '#edf1f0',
         // Accent

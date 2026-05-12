@@ -72,7 +72,7 @@ export function ContextMenu({ open, onClose, items, ariaLabel }: ContextMenuProp
                   item.onClick()
                 }}
                 className={[
-                  'w-full flex items-center gap-3 px-5 py-5 text-base font-normal text-left',
+                  'w-full flex items-center gap-3 px-5 py-4 text-base font-normal text-left',
                   'bg-white transition-colors duration-100 hover:bg-frost active:bg-dew',
                   i < items.length - 1 ? 'border-b border-frost' : '',
                   item.danger ? 'text-coral' : 'text-seaweed',

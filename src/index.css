@@ -19,7 +19,7 @@
   }
 
   html {
-    background: linear-gradient(160deg, #daeaea 0%, #f6f2ee 45%, #f6f1eb 100%);
+    background: linear-gradient(160deg, #D2E4E4 0%, #f6f2ee 45%, #f6f1eb 100%);
     background-attachment: fixed;
   }
 
@@ -56,7 +56,7 @@
   }
 
   .gradient-bg {
-    background: linear-gradient(160deg, #daeaea 0%, #f6f2ee 45%, #f6f1eb 100%);
+    background: linear-gradient(160deg, #D2E4E4 0%, #f6f2ee 45%, #f6f1eb 100%);
   }
 
   .input-gradient {

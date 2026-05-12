@@ -47,7 +47,7 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8, scale: 0.97 }}
         transition={{ duration: 0.25 }}
-        className="bg-white rounded-card border border-frost p-3 flex items-center justify-between"
+        className="bg-white rounded-card border border-frost px-5 py-4 flex items-center justify-between"
         aria-label={`Workout: ${workout.name}`}
       >
         <button
@@ -110,7 +110,7 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
             <button
               onClick={() => setDeleteOpen(false)}
               aria-label="Cancel delete"
-              className="flex items-center justify-center rounded-pill py-5 text-base font-medium text-obsidian border border-sage bg-transparent hover:bg-frost transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-obsidian border border-sage bg-transparent hover:bg-frost transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
               style={{ width: 157 }}
             >
               Cancel
@@ -121,7 +121,7 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
                 setDeleteOpen(false)
               }}
               aria-label={`Confirm delete ${workout.name}`}
-              className="flex items-center justify-center rounded-pill py-5 text-base font-medium text-white bg-coral hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral"
+              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-white bg-coral hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral"
               style={{ width: 152 }}
             >
               Delete

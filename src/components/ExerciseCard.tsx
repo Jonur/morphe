@@ -26,7 +26,7 @@ export function ExerciseCard({
       aria-label={`Exercise: ${exercise.name}`}
     >
       {/* Exercise name header */}
-      <div className="px-3 pt-3 pb-2.5">
+      <div className="px-5 py-4">
         <h3 className="text-base font-normal text-seaweed">{exercise.name}</h3>
       </div>
 
@@ -44,7 +44,7 @@ export function ExerciseCard({
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <div className="flex items-center gap-3 px-3 py-3">
+              <div className="flex items-center gap-3 px-5 py-4">
                 <span
                   className="text-base font-normal text-seaweed tabular-nums w-4 text-center"
                   aria-label={`Set ${idx + 1}`}
@@ -83,7 +83,7 @@ export function ExerciseCard({
 
       {/* Sets control row */}
       <hr className="border-frost" />
-      <div className="flex items-center justify-between px-3 py-3">
+      <div className="flex items-center justify-between px-5 py-4">
         <span className="text-base font-normal text-seaweed">
           {exercise.sets.length} set{exercise.sets.length !== 1 ? 's' : ''}
         </span>

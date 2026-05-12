@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { SearchIcon, CheckCircleIcon, DeleteXIcon } from './ui/icons'
+import { SearchIcon, CheckCircleIcon, DeleteXIcon, ClearIcon } from './ui/icons'
 import { EXERCISES } from '../data/exercises'
 
 interface ExerciseSearchProps {
@@ -21,6 +21,11 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
   const handleClose = useCallback(() => {
     setOpen(false)
   }, [])
+
+  const handleClear = () => {
+    setQuery('')
+    inputRef.current?.focus()
+  }
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -49,7 +54,7 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
         <input
           ref={inputRef}
           id="exercise-search"
-          type="search"
+          type="text"
           autoComplete="off"
           placeholder="Start typing..."
           value={query}
@@ -57,19 +62,43 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
             setQuery(e.target.value)
             setOpen(true)
           }}
-          onFocus={() => setOpen(true)}
+          onFocus={(e) => {
+            setOpen(true)
+            e.currentTarget.style.outline = '2px solid #D2E4E4'
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.outline = 'none'
+          }}
           aria-expanded={open}
           aria-haspopup="listbox"
           aria-controls="exercise-listbox"
           aria-autocomplete="list"
           className={[
-            'w-full pl-10 pr-5 py-5 rounded-2xl text-base font-light text-obsidian placeholder:text-sage',
+            'w-full pl-10 pr-10 py-4 rounded-2xl text-base font-light text-obsidian placeholder:text-sage',
             'bg-gradient-to-r from-[#f9fafa] to-[#f4f7f7]',
             'border transition-colors duration-200',
             open ? 'border-mist' : 'border-dew',
-            'outline-none focus-visible:ring-2 focus-visible:ring-patina',
+            'outline-none',
           ].join(' ')}
         />
+        {/* Custom clear button — shown when there is text */}
+        <AnimatePresence>
+          {query.length > 0 && (
+            <motion.button
+              key="clear"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.12 }}
+              type="button"
+              onClick={handleClear}
+              aria-label="Clear search"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-sage hover:text-patina transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded-full"
+            >
+              <ClearIcon size={16} aria-hidden="true" />
+            </motion.button>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Dropdown */}

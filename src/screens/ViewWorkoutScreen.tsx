@@ -113,7 +113,7 @@ export function ViewWorkoutScreen() {
           <div className="flex gap-3 w-full">
             <button
               onClick={() => setDeleteOpen(false)}
-              className="flex items-center justify-center rounded-pill py-5 text-base font-medium text-obsidian border border-sage bg-transparent hover:bg-frost transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-obsidian border border-sage bg-transparent hover:bg-frost transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
               style={{ width: 157 }}
             >
               Cancel
@@ -123,7 +123,7 @@ export function ViewWorkoutScreen() {
                 deleteWorkout(workout.id)
                 navigate('/home', { replace: true })
               }}
-              className="flex items-center justify-center rounded-pill py-5 text-base font-medium text-white bg-coral hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral"
+              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-white bg-coral hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral"
               style={{ width: 152 }}
             >
               Delete
