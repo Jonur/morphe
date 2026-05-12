@@ -86,7 +86,7 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
               type="button"
               onClick={handleClear}
               aria-label="Clear search"
-              className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 text-sage hover:text-patina transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded-full"
+              className="absolute inset-y-0 right-0 flex items-center pr-4 text-sage hover:text-patina transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
             >
               <ClearIcon size={10} aria-hidden="true" />
             </motion.button>
@@ -169,7 +169,7 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
                   exit={{ opacity: 0, scale: 0.85 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 28 }}
                 >
-                  <span className="inline-flex items-center gap-2 pl-4 pr-3 py-3 rounded-pill bg-white border border-frost text-sm font-normal text-seaweed">
+                  <span className="inline-flex items-center gap-2 pl-4 pr-4 py-3 rounded-pill bg-white border border-frost text-sm font-normal text-seaweed">
                     {name}
                     <button
                       type="button"

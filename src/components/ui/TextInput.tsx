@@ -51,7 +51,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
               type="button"
               onClick={onClear}
               aria-label="Clear input"
-              className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 text-sage hover:text-patina transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded-full"
+              className="absolute inset-y-0 right-0 flex items-center pr-4 text-sage hover:text-patina transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
             >
               <ClearIcon size={10} aria-hidden="true" />
             </motion.button>

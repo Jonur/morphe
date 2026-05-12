@@ -71,7 +71,7 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
           aria-label={`Options for ${workout.name}`}
           aria-expanded={menuOpen}
           aria-haspopup="menu"
-          className="w-8 h-8 flex items-center justify-center rounded-full -mr-0.5 text-seaweed hover:text-obsidian focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina transition-colors"
+          className="w-8 h-8 flex items-center justify-center rounded-full -mr-0.5 text-sage hover:text-seaweed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina transition-colors"
         >
           <VerticalMenuIcon size={16} aria-hidden="true" />
         </motion.button>

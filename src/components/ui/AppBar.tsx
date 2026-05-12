@@ -19,7 +19,7 @@ export function AppBar(props: AppBarProps) {
     return (
       <header className="flex items-center px-4 pt-14 pb-2" role="banner">
         <h1
-          className="font-display text-obsidian leading-none select-none"
+          className="font-display text-seaweed leading-none select-none"
           style={{ fontSize: 28, letterSpacing: '0.56px' }}
           aria-label="Morphe workout tracker"
         >
@@ -40,7 +40,7 @@ export function AppBar(props: AppBarProps) {
         whileTap={{ scale: 0.88 }}
         onClick={onBack}
         aria-label="Go back"
-        className="flex items-center justify-center w-9 h-9 -ml-1.5 rounded-full text-obsidian focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+        className="flex items-center justify-center w-9 h-9 -ml-1.5 rounded-full text-seaweed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
       >
         <BackArrowIcon size={24} aria-hidden="true" />
       </motion.button>
@@ -57,7 +57,7 @@ export function AppBar(props: AppBarProps) {
           whileTap={{ scale: 0.88 }}
           onClick={onMenu}
           aria-label="Open menu"
-          className="flex items-center justify-center w-9 h-9 -mr-1.5 rounded-full text-obsidian focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+          className="flex items-center justify-center w-9 h-9 -mr-1.5 rounded-full text-seaweed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
         >
           <VerticalMenuIcon size={24} aria-hidden="true" />
         </motion.button>
