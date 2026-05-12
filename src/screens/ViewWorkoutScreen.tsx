@@ -7,7 +7,7 @@ import { ExerciseCard } from '../components/ExerciseCard'
 import { ContextMenu } from '../components/ui/ContextMenu'
 import { Modal } from '../components/ui/Modal'
 import { Button } from '../components/ui/Button'
-import { PencilIcon, TrashIcon } from '../components/ui/icons'
+import { EditIcon, DeleteIcon } from '../components/ui/icons'
 
 export function ViewWorkoutScreen() {
   const { id } = useParams<{ id: string }>()
@@ -33,12 +33,12 @@ export function ViewWorkoutScreen() {
   const menuItems = [
     {
       label: 'Edit workout',
-      icon: <PencilIcon size={20} />,
+      icon: <EditIcon size={20} />,
       onClick: () => navigate(`/workout/${workout.id}/edit`),
     },
     {
       label: 'Delete',
-      icon: <TrashIcon size={20} />,
+      icon: <DeleteIcon size={20} />,
       onClick: () => setDeleteOpen(true),
       danger: true,
     },
@@ -99,7 +99,7 @@ export function ViewWorkoutScreen() {
             style={{ background: 'rgba(234, 60, 94, 0.2)' }}
             aria-hidden="true"
           >
-            <TrashIcon size={24} className="text-coral" />
+            <DeleteIcon size={24} className="text-coral" />
           </div>
 
           <div className="flex flex-col gap-2">

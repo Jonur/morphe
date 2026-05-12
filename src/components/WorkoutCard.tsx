@@ -5,7 +5,7 @@ import { Workout } from '../types'
 import { useWorkoutStore } from '../store/useWorkoutStore'
 import { ContextMenu } from './ui/ContextMenu'
 import { Modal } from './ui/Modal'
-import { VerticalMenuIcon, EyeIcon, PencilIcon, TrashIcon } from './ui/icons'
+import { VerticalMenuIcon, ViewIcon, EditIcon, DeleteIcon } from './ui/icons'
 
 interface WorkoutCardProps {
   workout: Workout
@@ -23,17 +23,17 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
   const menuItems = [
     {
       label: 'View workout',
-      icon: <EyeIcon size={20} />,
+      icon: <ViewIcon size={20} />,
       onClick: () => navigate(`/workout/${workout.id}`),
     },
     {
       label: 'Edit workout',
-      icon: <PencilIcon size={20} />,
+      icon: <EditIcon size={20} />,
       onClick: () => navigate(`/workout/${workout.id}/edit`),
     },
     {
       label: 'Delete',
-      icon: <TrashIcon size={20} />,
+      icon: <DeleteIcon size={20} />,
       onClick: () => setDeleteOpen(true),
       danger: true,
     },
@@ -93,7 +93,7 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
             style={{ background: 'rgba(234, 60, 94, 0.2)' }}
             aria-hidden="true"
           >
-            <TrashIcon size={24} className="text-coral" />
+            <DeleteIcon size={24} className="text-coral" />
           </div>
 
           {/* Text */}

@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Exercise } from '../types'
 import { SetField } from './ui/SetField'
 import { Checkbox } from './ui/Checkbox'
-import { SubtractCircleIcon, AddCircleIcon } from './ui/icons'
+import { SubtractIcon, AddIcon } from './ui/icons'
 
 interface ExerciseCardProps {
   workoutId: string
@@ -97,7 +97,7 @@ export function ExerciseCard({
             aria-label={`Remove last set from ${exercise.name}`}
             className="flex items-center justify-center w-6 h-6 bg-white rounded-full text-patina disabled:opacity-30 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
           >
-            <SubtractCircleIcon size={16} aria-hidden="true" />
+            <SubtractIcon size={16} aria-hidden="true" />
           </motion.button>
 
           <motion.button
@@ -107,7 +107,7 @@ export function ExerciseCard({
             aria-label={`Add set to ${exercise.name}`}
             className="flex items-center justify-center w-6 h-6 bg-white rounded-full text-patina focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
           >
-            <AddCircleIcon size={16} aria-hidden="true" />
+            <AddIcon size={16} aria-hidden="true" />
           </motion.button>
         </div>
       </div>

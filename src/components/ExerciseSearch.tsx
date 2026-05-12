@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { SearchIcon, CheckCircleIcon, DeleteXIcon, ClearIcon } from './ui/icons'
+import { SearchIcon, CheckCircleIcon, ClearIcon } from './ui/icons'
 import { EXERCISES } from '../data/exercises'
 
 interface ExerciseSearchProps {
@@ -86,9 +86,9 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
               type="button"
               onClick={handleClear}
               aria-label="Clear search"
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-sage hover:text-patina transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded-full"
+              className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 text-sage hover:text-patina transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded-full"
             >
-              <ClearIcon size={16} aria-hidden="true" />
+              <ClearIcon size={10} aria-hidden="true" />
             </motion.button>
           )}
         </AnimatePresence>
@@ -177,7 +177,7 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
                       aria-label={`Remove ${name}`}
                       className="flex items-center justify-center text-sage hover:text-coral transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded-full"
                     >
-                      <DeleteXIcon size={10} aria-hidden="true" />
+                      <ClearIcon size={10} aria-hidden="true" />
                     </button>
                   </span>
                 </motion.li>

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { SubtractCircleIcon, AddCircleIcon } from './icons'
+import { SubtractIcon, AddIcon } from './icons'
 
 interface SetFieldProps {
   value: number
@@ -27,7 +27,7 @@ export function SetField({ value, onChange, label, step = 1, min = 0 }: SetField
           aria-label={`Decrease ${label}`}
           className="flex items-center justify-center w-6 h-6 bg-white rounded-full text-patina focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
         >
-          <SubtractCircleIcon size={16} aria-hidden="true" />
+          <SubtractIcon size={16} aria-hidden="true" />
         </motion.button>
 
         <span
@@ -45,7 +45,7 @@ export function SetField({ value, onChange, label, step = 1, min = 0 }: SetField
           aria-label={`Increase ${label}`}
           className="flex items-center justify-center w-6 h-6 bg-white rounded-full text-patina focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
         >
-          <AddCircleIcon size={16} aria-hidden="true" />
+          <AddIcon size={16} aria-hidden="true" />
         </motion.button>
       </div>
       <span className="text-xs font-light text-patina">{label}</span>

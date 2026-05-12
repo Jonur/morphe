@@ -76,6 +76,7 @@ export function EditWorkoutScreen() {
           placeholder="e.g. Push day"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          onClear={() => setName('')}
           maxLength={60}
           aria-required="true"
         />

@@ -40,6 +40,7 @@ export function NameWorkoutScreen() {
           placeholder="e.g. Push day, Leg day…"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          onClear={() => { setName(''); inputRef.current?.focus() }}
           onKeyDown={(e) => e.key === 'Enter' && handleContinue()}
           maxLength={60}
           aria-required="true"
