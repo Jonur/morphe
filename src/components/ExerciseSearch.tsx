@@ -62,13 +62,7 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
             setQuery(e.target.value)
             setOpen(true)
           }}
-          onFocus={(e) => {
-            setOpen(true)
-            e.currentTarget.style.outline = '2px solid #D2E4E4'
-          }}
-          onBlur={(e) => {
-            e.currentTarget.style.outline = 'none'
-          }}
+          onFocus={() => setOpen(true)}
           aria-expanded={open}
           aria-haspopup="listbox"
           aria-controls="exercise-listbox"
@@ -76,9 +70,8 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
           className={[
             'w-full pl-10 pr-10 py-4 rounded-2xl text-base font-light text-obsidian placeholder:text-sage',
             'bg-gradient-to-r from-[#f9fafa] to-[#f4f7f7]',
-            'border transition-colors duration-200',
+            'border transition-colors duration-200 outline-none',
             open ? 'border-mist' : 'border-dew',
-            'outline-none',
           ].join(' ')}
         />
         {/* Custom clear button — shown when there is text */}

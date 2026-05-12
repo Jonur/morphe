@@ -47,18 +47,15 @@ export function HomeScreen() {
           )}
         </AnimatePresence>
 
-        {/* Create CTA */}
+        {/* Create CTA — SVG background gives exact 4px dash / 4px gap on rounded border */}
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={() => navigate('/create/name')}
           aria-label="Create new workout"
-          className={[
-            'w-full mt-2 flex items-center justify-center gap-2',
-            'border border-dashed border-sage rounded-card py-5',
-            'text-base font-medium text-patina',
-            'hover:bg-frost transition-colors duration-150',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina',
-          ].join(' ')}
+          className="w-full mt-2 flex items-center justify-center gap-2 rounded-card py-4 text-base font-medium text-patina hover:bg-frost transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='20' ry='20' stroke='%2379a3a1' stroke-width='1' stroke-dasharray='4%2c4' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`,
+          }}
         >
           <PlusIcon size={16} aria-hidden="true" />
           Create workout

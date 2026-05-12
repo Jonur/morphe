@@ -52,7 +52,7 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
       >
         <button
           onClick={() => navigate(`/workout/${workout.id}`)}
-          className="flex-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina rounded-lg py-1"
+          className="flex-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina rounded-lg"
           aria-label={`View ${workout.name}`}
         >
           <h3 className="text-base font-normal text-seaweed leading-tight">{workout.name}</h3>

@@ -34,10 +34,18 @@
     background: transparent;
   }
 
-  *:focus-visible {
+  /* Global keyboard-focus ring — excludes inputs/textareas which handle their own focus style */
+  *:focus-visible:not(input):not(textarea) {
     outline: 2px solid #4b7978;
     outline-offset: 2px;
     border-radius: 4px;
+  }
+
+  /* Inputs: mist border (inside) + dew outline flush to the border (no offset) */
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #D2E4E4;
+    outline-offset: 0;
   }
 }
 

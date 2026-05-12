@@ -6,7 +6,7 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function TextInput(
-  { label, error, className = '', id, style, ...rest },
+  { label, error, className = '', id, ...rest },
   ref
 ) {
   const inputId = id ?? label?.toLowerCase().replace(/\s+/g, '-')
@@ -25,27 +25,12 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
           'w-full rounded-2xl px-4 py-4',
           'text-base font-light text-obsidian placeholder:text-sage',
           'bg-gradient-to-r from-[#f9fafa] to-[#f4f7f7]',
-          'border transition-colors duration-200',
-          error ? 'border-coral' : 'border-dew',
-          // Focus: inside border → mist, outside outline → dew
-          'focus:border-mist focus:outline-none',
-          'focus-visible:outline-2 focus-visible:outline-offset-0',
+          'border transition-colors duration-200 outline-none',
+          error ? 'border-coral' : 'border-dew focus:border-mist',
           className,
         ]
           .filter(Boolean)
           .join(' ')}
-        style={{
-          // Outside 2px dew stroke on focus — handled via onFocus/onBlur to toggle outline
-          ...style,
-        }}
-        onFocus={(e) => {
-          e.currentTarget.style.outline = '2px solid #D2E4E4'
-          rest.onFocus?.(e)
-        }}
-        onBlur={(e) => {
-          e.currentTarget.style.outline = 'none'
-          rest.onBlur?.(e)
-        }}
         {...rest}
       />
       {error && (
