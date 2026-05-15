@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { flushSync } from 'react-dom'
 import { AppBar } from '../components/ui/AppBar'
 import { ExerciseSearch } from '../components/ExerciseSearch'
 import { Button } from '../components/ui/Button'
@@ -18,6 +19,7 @@ export function AddExercisesScreen() {
 
   const addWorkout = useWorkoutStore((s) => s.addWorkout)
   const [selected, setSelected] = useState<string[]>([])
+  const [isClosing, setIsClosing] = useState(false)
 
   const toggle = (name: string) => {
     setSelected((prev) =>
@@ -34,15 +36,20 @@ export function AddExercisesScreen() {
     navigate('/home', { replace: true })
   }
 
+  const handleClose = () => {
+    flushSync(() => setIsClosing(true))
+    navigate('/home', { replace: true })
+  }
+
   return (
     <motion.div
       initial={{ x: '100%', opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      exit={{ x: '-30%', opacity: 0 }}
-      transition={{ duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
+      exit={isClosing ? { opacity: 0 } : { x: '-30%', opacity: 0 }}
+      transition={isClosing ? { duration: 0 } : { duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
       className="flex flex-col min-h-screen"
     >
-      <AppBar mode="nav" title={workoutName} onBack={() => navigate(-1)} onClose={() => navigate('/home')} />
+      <AppBar mode="nav" title={workoutName} onBack={() => navigate(-1)} onClose={handleClose} />
 
       <main className="flex-1 flex flex-col px-4 pt-6 pb-8 gap-6" id="main-content">
         <div className="flex flex-col gap-2">

@@ -108,6 +108,19 @@ export function CheckCircleIcon({ size = 20, className = '', ...props }: IconPro
 }
 
 /**
+ * Close / dismiss — 24×24.
+ * Figma DS node 152:39 — two 15px diagonals offset 4.5px from edge, strokeWeight 1.8.
+ */
+export function CloseIcon({ size = 24, className = '', ...props }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className} {...props}>
+      <path d="M19.5 4.5L4.5 19.5" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M19.5 19.5L4.5 4.5" stroke="currentColor" strokeWidth="1.8" />
+    </svg>
+  )
+}
+
+/**
  * × mark — used to clear search input (size 16) and remove exercise chips (size 10).
  * Figma: Delete icon — two crossing diagonals, 8×8 natural size.
  */
