@@ -23,7 +23,7 @@ export function NameWorkoutScreen() {
 
   const handleClose = () => {
     flushSync(() => setIsClosing(true))
-    navigate('/home', { replace: true })
+    navigate('/home', { replace: true, state: { instant: true } })
   }
 
   return (
@@ -36,7 +36,7 @@ export function NameWorkoutScreen() {
     >
       <AppBar mode="nav" title="New workout" onBack={() => navigate(-1)} onClose={handleClose} />
 
-      <main className="flex-1 flex flex-col px-4 pt-6 pb-8 gap-6" id="main-content">
+      <main className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-6" id="main-content">
         <div className="flex flex-col gap-2">
           <h2 className="text-2xl font-semibold text-seaweed">Name your workout</h2>
           <p className="text-base font-light text-patina">Give it a name you&apos;ll recognise.</p>
@@ -53,19 +53,19 @@ export function NameWorkoutScreen() {
           aria-required="true"
           aria-label="Workout name"
         />
-
-        <div className="mt-auto">
-          <Button
-            variant="primary"
-            fullWidth
-            disabled={!name.trim()}
-            onClick={handleContinue}
-            aria-label="Save and continue to add exercises"
-          >
-            Save and continue
-          </Button>
-        </div>
       </main>
+
+      <div className="sticky bottom-0 px-4 pb-8 pt-4">
+        <Button
+          variant="primary"
+          fullWidth
+          disabled={!name.trim()}
+          onClick={handleContinue}
+          aria-label="Save and continue to add exercises"
+        >
+          Save and continue
+        </Button>
+      </div>
     </motion.div>
   )
 }

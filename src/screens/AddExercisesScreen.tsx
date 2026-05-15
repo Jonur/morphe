@@ -38,7 +38,7 @@ export function AddExercisesScreen() {
 
   const handleClose = () => {
     flushSync(() => setIsClosing(true))
-    navigate('/home', { replace: true })
+    navigate('/home', { replace: true, state: { instant: true } })
   }
 
   return (
@@ -51,7 +51,7 @@ export function AddExercisesScreen() {
     >
       <AppBar mode="nav" title={workoutName} onBack={() => navigate(-1)} onClose={handleClose} />
 
-      <main className="flex-1 flex flex-col px-4 pt-6 pb-8 gap-6" id="main-content">
+      <main className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-6" id="main-content">
         <div className="flex flex-col gap-2">
           <h2 className="text-2xl font-semibold text-seaweed">Add exercises</h2>
           <p className="text-base font-light text-patina">
@@ -62,19 +62,19 @@ export function AddExercisesScreen() {
         <div className="flex-1">
           <ExerciseSearch selected={selected} onToggle={toggle} />
         </div>
-
-        <div className="mt-auto">
-          <Button
-            variant="primary"
-            fullWidth
-            disabled={selected.length === 0}
-            onClick={handleSave}
-            aria-label={`Save workout with ${selected.length} exercise${selected.length !== 1 ? 's' : ''}`}
-          >
-            Save and continue
-          </Button>
-        </div>
       </main>
+
+      <div className="sticky bottom-0 px-4 pb-8 pt-4">
+        <Button
+          variant="primary"
+          fullWidth
+          disabled={selected.length === 0}
+          onClick={handleSave}
+          aria-label={`Save workout with ${selected.length} exercise${selected.length !== 1 ? 's' : ''}`}
+        >
+          Save and continue
+        </Button>
+      </div>
     </motion.div>
   )
 }

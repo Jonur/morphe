@@ -18,7 +18,7 @@ type AppBarProps = AppBarHomeProps | AppBarNavProps
 export function AppBar(props: AppBarProps) {
   if (props.mode === 'home') {
     return (
-      <header className="flex items-center px-4 pt-14 pb-2" role="banner">
+      <header className="flex items-center px-4 pt-2 pb-2" role="banner">
         <h1
           className="font-display text-seaweed leading-none select-none"
           style={{ fontSize: 28, letterSpacing: '0.56px' }}
@@ -34,7 +34,7 @@ export function AppBar(props: AppBarProps) {
 
   return (
     <header
-      className="relative flex items-center justify-between px-4 pt-14 py-2"
+      className="relative flex items-center justify-between px-4 pt-2 py-2"
       role="banner"
     >
       <motion.button
@@ -69,7 +69,7 @@ export function AppBar(props: AppBarProps) {
           aria-label="Close and go home"
           className="flex items-center justify-center w-9 h-9 -mr-1.5 rounded-full text-patina focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
         >
-          <CloseIcon size={20} aria-hidden="true" />
+          <CloseIcon size={24} aria-hidden="true" />
         </motion.button>
       ) : (
         <div className="w-9" aria-hidden="true" />

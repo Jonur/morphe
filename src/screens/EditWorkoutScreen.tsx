@@ -64,7 +64,7 @@ export function EditWorkoutScreen() {
 
   const handleClose = () => {
     flushSync(() => setIsClosing(true))
-    navigate('/home', { replace: true })
+    navigate('/home', { replace: true, state: { instant: true } })
   }
 
   return (
@@ -77,7 +77,7 @@ export function EditWorkoutScreen() {
     >
       <AppBar mode="nav" title="Edit workout" onBack={() => navigate(-1)} onClose={handleClose} />
 
-      <main className="flex-1 flex flex-col px-4 pt-6 pb-8 gap-6" id="main-content">
+      <main className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-6" id="main-content">
         <TextInput
           label="Workout name"
           placeholder="e.g. Push day"
@@ -92,19 +92,19 @@ export function EditWorkoutScreen() {
           <h2 className="text-base font-medium text-seaweed">Exercises</h2>
           <ExerciseSearch selected={selectedNames} onToggle={toggle} />
         </div>
-
-        <div className="mt-auto">
-          <Button
-            variant="primary"
-            fullWidth
-            disabled={!name.trim() || selectedNames.length === 0}
-            onClick={handleSave}
-            aria-label="Save changes"
-          >
-            Save changes
-          </Button>
-        </div>
       </main>
+
+      <div className="sticky bottom-0 px-4 pb-8 pt-4">
+        <Button
+          variant="primary"
+          fullWidth
+          disabled={!name.trim() || selectedNames.length === 0}
+          onClick={handleSave}
+          aria-label="Save changes"
+        >
+          Save changes
+        </Button>
+      </div>
     </motion.div>
   )
 }

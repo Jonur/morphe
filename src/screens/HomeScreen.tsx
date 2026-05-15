@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { flushSync } from 'react-dom'
 import { useWorkoutStore } from '../store/useWorkoutStore'
 import { AppBar } from '../components/ui/AppBar'
 import { WorkoutCard } from '../components/WorkoutCard'
@@ -7,14 +9,23 @@ import { PlusIcon } from '../components/ui/icons'
 
 export function HomeScreen() {
   const navigate = useNavigate()
+  const location = useLocation()
   const workouts = useWorkoutStore((s) => s.workouts)
+  const [exitInstant, setExitInstant] = useState(false)
+
+  const instant = (location.state as { instant?: boolean } | null)?.instant ?? false
+
+  const handleCreate = () => {
+    flushSync(() => setExitInstant(true))
+    navigate('/create/name')
+  }
 
   return (
     <motion.div
-      initial={{ x: '100%', opacity: 0 }}
+      initial={instant ? { x: 0, opacity: 1 } : { x: '100%', opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      exit={{ x: '-30%', opacity: 0 }}
-      transition={{ duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
+      exit={exitInstant ? { opacity: 1 } : { x: '-30%', opacity: 0 }}
+      transition={exitInstant ? { duration: 0 } : { duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
       className="flex flex-col min-h-screen"
     >
       <AppBar mode="home" />
@@ -50,7 +61,7 @@ export function HomeScreen() {
         {/* Create CTA — SVG background gives exact 4px dash / 4px gap on rounded border */}
         <motion.button
           whileTap={{ scale: 0.97 }}
-          onClick={() => navigate('/create/name')}
+          onClick={handleCreate}
           aria-label="Create new workout"
           className="w-full mt-2 flex items-center justify-center gap-2 rounded-card py-4 text-base font-medium text-patina hover:bg-frost transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
           style={{
