@@ -73,11 +73,11 @@ export function EditWorkoutScreen() {
       animate={{ x: 0, opacity: 1 }}
       exit={isClosing ? { opacity: 0 } : { x: '-30%', opacity: 0 }}
       transition={isClosing ? { duration: 0 } : { duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
-      className="flex flex-col min-h-screen"
+      className="flex flex-col h-[100dvh]"
     >
       <AppBar mode="nav" title="Edit workout" onBack={() => navigate(-1)} onClose={handleClose} />
 
-      <main className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-6" id="main-content">
+      <main className="flex-1 overflow-y-auto flex flex-col px-4 pt-6 pb-4 gap-6" id="main-content">
         <TextInput
           label="Workout name"
           placeholder="e.g. Push day"
@@ -94,7 +94,7 @@ export function EditWorkoutScreen() {
         </div>
       </main>
 
-      <div className="sticky bottom-0 px-4 pb-8 pt-4">
+      <div className="flex-none px-4 pb-8 pt-4">
         <Button
           variant="primary"
           fullWidth

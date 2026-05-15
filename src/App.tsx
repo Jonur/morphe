@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <div
-      className="relative w-full max-w-[390px] mx-auto min-h-screen overflow-x-hidden"
+      className="relative w-full max-w-[390px] mx-auto min-h-[100dvh] overflow-x-hidden"
       role="application"
       aria-label="Morphe workout tracker"
     >

@@ -21,7 +21,7 @@ export function ViewWorkoutScreen() {
 
   if (!workout) {
     return (
-      <div className="flex flex-col min-h-screen items-center justify-center gap-4 px-4">
+      <div className="flex flex-col min-h-[100dvh] items-center justify-center gap-4 px-4">
         <p className="text-base font-light text-patina">Workout not found.</p>
         <Button variant="ghost" onClick={() => navigate('/home')}>
           Go home
@@ -51,7 +51,7 @@ export function ViewWorkoutScreen() {
         animate={{ x: 0, opacity: 1 }}
         exit={{ x: '-30%', opacity: 0 }}
         transition={{ duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
-        className="flex flex-col min-h-screen"
+        className="flex flex-col min-h-[100dvh]"
       >
         <AppBar
           mode="nav"

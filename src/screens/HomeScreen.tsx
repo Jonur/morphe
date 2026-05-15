@@ -26,7 +26,7 @@ export function HomeScreen() {
       animate={{ x: 0, opacity: 1 }}
       exit={exitInstant ? { opacity: 1 } : { x: '-30%', opacity: 0 }}
       transition={exitInstant ? { duration: 0 } : { duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
-      className="flex flex-col min-h-screen"
+      className="flex flex-col min-h-[100dvh]"
     >
       <AppBar mode="home" />
 
