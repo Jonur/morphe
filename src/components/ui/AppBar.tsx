@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { BackArrowIcon, VerticalMenuIcon } from './icons'
+import { BackArrowIcon, VerticalMenuIcon, ClearIcon } from './icons'
 
 interface AppBarHomeProps {
   mode: 'home'
@@ -10,6 +10,7 @@ interface AppBarNavProps {
   title: string
   onBack: () => void
   onMenu?: () => void
+  onClose?: () => void
 }
 
 type AppBarProps = AppBarHomeProps | AppBarNavProps
@@ -29,7 +30,7 @@ export function AppBar(props: AppBarProps) {
     )
   }
 
-  const { title, onBack, onMenu } = props
+  const { title, onBack, onMenu, onClose } = props
 
   return (
     <header
@@ -60,6 +61,15 @@ export function AppBar(props: AppBarProps) {
           className="flex items-center justify-center w-9 h-9 -mr-1.5 rounded-full text-seaweed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
         >
           <VerticalMenuIcon size={24} aria-hidden="true" />
+        </motion.button>
+      ) : onClose ? (
+        <motion.button
+          whileTap={{ scale: 0.88 }}
+          onClick={onClose}
+          aria-label="Close and go home"
+          className="flex items-center justify-center w-9 h-9 -mr-1.5 rounded-full text-seaweed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+        >
+          <ClearIcon size={14} aria-hidden="true" />
         </motion.button>
       ) : (
         <div className="w-9" aria-hidden="true" />

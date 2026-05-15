@@ -67,6 +67,11 @@
     background: linear-gradient(180deg, #E8F2F2 0%, #EFF1EE 65%, #F6F1EB 100%);
   }
 
+  /* Splash screen — inverted, more saturated gradient */
+  .splash-bg {
+    background: linear-gradient(180deg, #F6F1EB 0%, #CFDDD9 35%, #A8CAC8 100%);
+  }
+
   .input-gradient {
     background: linear-gradient(135deg, rgba(218, 234, 234, 0.35) 0%, rgba(246, 241, 235, 0.35) 100%);
   }

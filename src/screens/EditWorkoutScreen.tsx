@@ -68,7 +68,7 @@ export function EditWorkoutScreen() {
       transition={{ duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
       className="flex flex-col min-h-screen"
     >
-      <AppBar mode="nav" title="Edit workout" onBack={() => navigate(-1)} />
+      <AppBar mode="nav" title="Edit workout" onBack={() => navigate(-1)} onClose={() => navigate('/home')} />
 
       <main className="flex-1 flex flex-col px-4 pt-6 pb-8 gap-6" id="main-content">
         <TextInput
