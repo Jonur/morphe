@@ -82,7 +82,7 @@ export function EditWorkoutScreen() {
         />
 
         <div className="flex flex-col gap-2">
-          <h2 className="text-2xl font-semibold text-seaweed">Exercises</h2>
+          <h2 className="text-base font-medium text-seaweed">Exercises</h2>
           <ExerciseSearch selected={selectedNames} onToggle={toggle} />
         </div>
 
