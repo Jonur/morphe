@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 interface CheckboxProps {
   checked: boolean
@@ -6,6 +6,9 @@ interface CheckboxProps {
   label?: string
   size?: number
 }
+
+// Ease curve that matches "ease in" feel requested — fast start, smooth settle
+const FILL_EASE = [0.4, 0, 0.2, 1] as const
 
 export function Checkbox({ checked, onChange, label, size = 20 }: CheckboxProps) {
   return (
@@ -18,47 +21,61 @@ export function Checkbox({ checked, onChange, label, size = 20 }: CheckboxProps)
       className="flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina rounded-full"
       style={{ width: size, height: size }}
     >
-      <AnimatePresence mode="wait" initial={false}>
-        {checked ? (
-          <motion.span
-            key="checked"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.5, opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 500, damping: 28 }}
-            className="flex items-center justify-center rounded-full bg-coral"
-            style={{ width: size, height: size }}
-            aria-hidden="true"
-          >
-            <svg
-              width={size * 0.55}
-              height={size * 0.55}
-              viewBox="0 0 12 12"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M2.5 6L5 8.5L9.5 3.5"
-                stroke="white"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </motion.span>
-        ) : (
-          <motion.span
-            key="unchecked"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.5, opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 500, damping: 28 }}
-            className="rounded-full border-2 border-dew"
-            style={{ width: size, height: size }}
-            aria-hidden="true"
-          />
-        )}
-      </AnimatePresence>
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 20 20"
+        fill="none"
+        aria-hidden="true"
+      >
+        {/*
+          Circle: dew border when unchecked → solid rose fill when checked.
+          Animates fill colour and stroke colour together so the border
+          blends into the filled state without a visible pop.
+        */}
+        <motion.circle
+          cx="10"
+          cy="10"
+          r="9"
+          strokeWidth="2"
+          initial={false}
+          animate={{
+            fill:   checked ? '#f65776' : 'rgba(0,0,0,0)',
+            stroke: checked ? '#f65776' : '#D2E4E4',
+          }}
+          transition={{ duration: 0.22, ease: FILL_EASE }}
+        />
+
+        {/*
+          Checkmark: strokes in left-to-right when checked, retracts instantly
+          on uncheck. pathLength 0→1 drives stroke-dashoffset under the hood.
+          Small delay lets the rose fill land first, then the stroke draws in.
+        */}
+        <motion.path
+          d="M5.5 10.5 L8.5 13.5 L15 7"
+          stroke="white"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          initial={false}
+          animate={{
+            pathLength: checked ? 1 : 0,
+            opacity:    checked ? 1 : 0,
+          }}
+          transition={{
+            pathLength: {
+              duration: checked ? 0.3 : 0.15,
+              ease: 'easeInOut',
+              delay: checked ? 0.1 : 0,
+            },
+            opacity: {
+              duration: 0.05,
+              delay: checked ? 0.1 : 0,
+            },
+          }}
+        />
+      </svg>
     </button>
   )
 }
