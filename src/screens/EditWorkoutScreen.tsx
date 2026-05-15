@@ -81,7 +81,7 @@ export function EditWorkoutScreen() {
           aria-required="true"
         />
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <h2 className="text-base font-medium text-seaweed">Exercises</h2>
           <ExerciseSearch selected={selectedNames} onToggle={toggle} />
         </div>
