@@ -52,11 +52,9 @@ export function Checkbox({ checked, onChange, label, size = 20 }: CheckboxProps)
           Small delay lets the rose fill land first, then the stroke draws in.
         */}
         <motion.path
-          d="M5.5 10.5 L8.5 13.5 L15 7"
+          d="M6 9.833 L8.917 12.75 L13.917 6.5"
           stroke="white"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          strokeWidth="1.8"
           fill="none"
           initial={false}
           animate={{
