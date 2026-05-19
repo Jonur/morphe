@@ -13,7 +13,9 @@ export function HomeScreen() {
   const workouts = useWorkoutStore((s) => s.workouts)
   const [exitInstant, setExitInstant] = useState(false)
 
-  const instant = (location.state as { instant?: boolean } | null)?.instant ?? false
+  const locationState = location.state as { instant?: boolean; direction?: string } | null
+  const instant = locationState?.instant ?? false
+  const direction = locationState?.direction ?? 'forward'
 
   const handleCreate = () => {
     flushSync(() => setExitInstant(true))
@@ -22,7 +24,7 @@ export function HomeScreen() {
 
   return (
     <motion.div
-      initial={instant ? { x: 0, opacity: 1 } : { x: '100%', opacity: 0 }}
+      initial={instant ? { x: 0, opacity: 1 } : direction === 'back' ? { x: '-30%', opacity: 0 } : { x: '100%', opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       exit={exitInstant ? { opacity: 1 } : { x: '-30%', opacity: 0 }}
       transition={exitInstant ? { duration: 0 } : { duration: 0.3, ease: [0.32, 0, 0.67, 0] }}

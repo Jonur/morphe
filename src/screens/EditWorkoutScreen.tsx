@@ -20,6 +20,7 @@ export function EditWorkoutScreen() {
     workout?.exercises.map((e) => e.name) ?? []
   )
   const [isClosing, setIsClosing] = useState(false)
+  const [exitBack, setExitBack] = useState(false)
 
   if (!workout) {
     return (
@@ -71,11 +72,19 @@ export function EditWorkoutScreen() {
     <motion.div
       initial={{ x: '100%', opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      exit={isClosing ? { opacity: 0 } : { x: '-30%', opacity: 0 }}
+      exit={isClosing ? { opacity: 0 } : exitBack ? { x: '100%', opacity: 0 } : { x: '-30%', opacity: 0 }}
       transition={isClosing ? { duration: 0 } : { duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
       className="flex flex-col h-[100dvh]"
     >
-      <AppBar mode="nav" title="Edit workout" onBack={() => navigate(-1)} onClose={handleClose} />
+      <AppBar
+          mode="nav"
+          title="Edit workout"
+          onBack={() => {
+            flushSync(() => setExitBack(true))
+            navigate(`/workout/${workout.id}`, { state: { direction: 'back' } })
+          }}
+          onClose={handleClose}
+        />
 
       <main className="flex-1 overflow-y-auto flex flex-col px-4 pt-6 pb-4 gap-6" id="main-content">
         <TextInput

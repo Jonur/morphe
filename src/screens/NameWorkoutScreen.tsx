@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { flushSync } from 'react-dom'
 import { AppBar } from '../components/ui/AppBar'
@@ -8,8 +8,11 @@ import { Button } from '../components/ui/Button'
 
 export function NameWorkoutScreen() {
   const navigate = useNavigate()
+  const location = useLocation()
+  const direction = (location.state as { direction?: string } | null)?.direction ?? 'forward'
   const [name, setName] = useState('')
   const [isClosing, setIsClosing] = useState(false)
+  const [exitBack, setExitBack] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -28,13 +31,21 @@ export function NameWorkoutScreen() {
 
   return (
     <motion.div
-      initial={{ x: 0, opacity: 1 }}
+      initial={direction === 'back' ? { x: '-30%', opacity: 0 } : { x: 0, opacity: 1 }}
       animate={{ x: 0, opacity: 1 }}
-      exit={isClosing ? { opacity: 0 } : { x: '-30%', opacity: 0 }}
+      exit={isClosing ? { opacity: 0 } : exitBack ? { x: '100%', opacity: 0 } : { x: '-30%', opacity: 0 }}
       transition={isClosing ? { duration: 0 } : { duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
       className="flex flex-col h-[100dvh]"
     >
-      <AppBar mode="nav" title="New workout" onBack={() => navigate(-1)} onClose={handleClose} />
+      <AppBar
+          mode="nav"
+          title="New workout"
+          onBack={() => {
+            flushSync(() => setExitBack(true))
+            navigate('/home', { state: { direction: 'back' } })
+          }}
+          onClose={handleClose}
+        />
 
       <main className="flex-1 overflow-y-auto flex flex-col px-4 pt-6 pb-4 gap-6" id="main-content">
         <div className="flex flex-col gap-2">

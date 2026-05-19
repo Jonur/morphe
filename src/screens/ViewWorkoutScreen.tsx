@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { flushSync } from 'react-dom'
 import { useWorkoutStore } from '../store/useWorkoutStore'
 import { AppBar } from '../components/ui/AppBar'
 import { ExerciseCard } from '../components/ExerciseCard'
@@ -12,12 +13,15 @@ import { EditIcon, DuplicateIcon, DeleteIcon } from '../components/ui/icons'
 export function ViewWorkoutScreen() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const location = useLocation()
+  const direction = (location.state as { direction?: string } | null)?.direction ?? 'forward'
   const { workouts, deleteWorkout, duplicateWorkout, addSet, removeLastSet, updateSet, toggleSetComplete, duplicateExercise } =
     useWorkoutStore()
 
   const workout = workouts.find((w) => w.id === id)
   const [menuOpen, setMenuOpen] = useState(false)
   const [deleteOpen, setDeleteOpen] = useState(false)
+  const [exitBack, setExitBack] = useState(false)
 
   if (!workout) {
     return (
@@ -52,16 +56,19 @@ export function ViewWorkoutScreen() {
   return (
     <>
       <motion.div
-        initial={{ x: '100%', opacity: 0 }}
+        initial={direction === 'back' ? { x: '-30%', opacity: 0 } : { x: '100%', opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        exit={{ x: '-30%', opacity: 0 }}
+        exit={exitBack ? { x: '100%', opacity: 0 } : { x: '-30%', opacity: 0 }}
         transition={{ duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
         className="flex flex-col min-h-[100dvh]"
       >
         <AppBar
           mode="nav"
           title={workout.name}
-          onBack={() => navigate('/home')}
+          onBack={() => {
+            flushSync(() => setExitBack(true))
+            navigate('/home', { state: { direction: 'back' } })
+          }}
           onMenu={() => setMenuOpen(true)}
         />
 
