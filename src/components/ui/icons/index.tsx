@@ -207,17 +207,23 @@ export function DeleteIcon({ size = 16, className = '', ...props }: IconProps) {
 
 /**
  * Duplicate / copy — 16×16.
- * Two overlapping squares offset 4px diagonally.
- * Front page (top-right) drawn fully; back page (bottom-left) shows only
- * the L-shaped edges not hidden behind the front.
+ * Figma DS node 182:2 — solid front page (bottom-left rect) + dashed back
+ * page peeking from the top and right edges, with a solid top-right corner.
+ * strokeWeight 1.5, butt caps, miter join (SVG defaults).
  */
 export function DuplicateIcon({ size = 16, className = '', ...props }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 16 16" fill="none" className={className} {...props}>
-      {/* Back page — visible L-shaped edges */}
-      <path d="M5 5 L1 5 L1 15 L11 15 L11 11" stroke="currentColor" strokeWidth="1.5" />
-      {/* Front page — full rectangle */}
-      <path d="M5 1 L15 1 L15 11 L5 11 Z" stroke="currentColor" strokeWidth="1.5" />
+      {/* Front page — solid rectangle, bottom-left */}
+      <path d="M2.67 5.33 L13.33 5.33 L13.33 16 L2.67 16 Z" stroke="currentColor" strokeWidth="1.5" />
+      {/* Back page top edge — two dashes */}
+      <path d="M4.67 2.67 L8 2.67"    stroke="currentColor" strokeWidth="1.5" />
+      <path d="M9.33 2.67 L12.67 2.67" stroke="currentColor" strokeWidth="1.5" />
+      {/* Back page top-right corner — solid */}
+      <path d="M14 2.67 L16 2.67 L16 4.67" stroke="currentColor" strokeWidth="1.5" />
+      {/* Back page right edge — two dashes */}
+      <path d="M16 6 L16 9.33"   stroke="currentColor" strokeWidth="1.5" />
+      <path d="M16 10.67 L16 14" stroke="currentColor" strokeWidth="1.5" />
     </svg>
   )
 }
