@@ -5,7 +5,7 @@ import { Workout } from '../types'
 import { useWorkoutStore } from '../store/useWorkoutStore'
 import { ContextMenu } from './ui/ContextMenu'
 import { Modal } from './ui/Modal'
-import { VerticalMenuIcon, ViewIcon, EditIcon, DeleteIcon } from './ui/icons'
+import { VerticalMenuIcon, ViewIcon, EditIcon, DuplicateIcon, DeleteIcon } from './ui/icons'
 
 interface WorkoutCardProps {
   workout: Workout
@@ -13,7 +13,7 @@ interface WorkoutCardProps {
 
 export function WorkoutCard({ workout }: WorkoutCardProps) {
   const navigate = useNavigate()
-  const deleteWorkout = useWorkoutStore((s) => s.deleteWorkout)
+  const { deleteWorkout, duplicateWorkout } = useWorkoutStore()
   const [menuOpen, setMenuOpen] = useState(false)
   const [deleteOpen, setDeleteOpen] = useState(false)
 
@@ -30,6 +30,11 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
       label: 'Edit workout',
       icon: <EditIcon size={20} />,
       onClick: () => navigate(`/workout/${workout.id}/edit`),
+    },
+    {
+      label: 'Duplicate',
+      icon: <DuplicateIcon size={20} />,
+      onClick: () => duplicateWorkout(workout.id),
     },
     {
       label: 'Delete',

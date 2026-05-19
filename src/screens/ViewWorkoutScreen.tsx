@@ -7,12 +7,12 @@ import { ExerciseCard } from '../components/ExerciseCard'
 import { ContextMenu } from '../components/ui/ContextMenu'
 import { Modal } from '../components/ui/Modal'
 import { Button } from '../components/ui/Button'
-import { EditIcon, DeleteIcon } from '../components/ui/icons'
+import { EditIcon, DuplicateIcon, DeleteIcon } from '../components/ui/icons'
 
 export function ViewWorkoutScreen() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { workouts, deleteWorkout, addSet, removeLastSet, updateSet, toggleSetComplete, duplicateExercise } =
+  const { workouts, deleteWorkout, duplicateWorkout, addSet, removeLastSet, updateSet, toggleSetComplete, duplicateExercise } =
     useWorkoutStore()
 
   const workout = workouts.find((w) => w.id === id)
@@ -35,6 +35,11 @@ export function ViewWorkoutScreen() {
       label: 'Edit workout',
       icon: <EditIcon size={20} />,
       onClick: () => navigate(`/workout/${workout.id}/edit`),
+    },
+    {
+      label: 'Duplicate',
+      icon: <DuplicateIcon size={20} />,
+      onClick: () => { duplicateWorkout(workout.id); navigate('/home') },
     },
     {
       label: 'Delete',

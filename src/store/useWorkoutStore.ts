@@ -14,6 +14,7 @@ interface WorkoutStore {
 
   // Workout CRUD
   addWorkout: (name: string, exercises: { name: string; sets: number }[]) => string
+  duplicateWorkout: (id: string) => void
   deleteWorkout: (id: string) => void
   updateWorkout: (
     id: string,
@@ -59,6 +60,48 @@ export const useWorkoutStore = create<WorkoutStore>((set, get) => ({
     }
     set((s) => ({ workouts: [workout, ...s.workouts] }))
     return id
+  },
+
+  duplicateWorkout(id) {
+    const { workouts } = get()
+    const original = workouts.find((w) => w.id === id)
+    if (!original) return
+
+    // Strip any existing "(N)" suffix to get the base name, then find the
+    // next free number: "Push day" → "Push day (1)" → "Push day (2)" …
+    const baseName = original.name.replace(/\s*\(\d+\)$/, '')
+    const existingNumbers = workouts
+      .map((w) => {
+        const m = w.name.match(new RegExp(`^${baseName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*\\((\\d+)\\)$`))
+        return m ? parseInt(m[1], 10) : null
+      })
+      .filter((n): n is number => n !== null)
+    const nextNum = existingNumbers.length > 0 ? Math.max(...existingNumbers) + 1 : 1
+    const newName = `${baseName} (${nextNum})`
+
+    const duplicate: Workout = {
+      id: generateId(),
+      name: newName,
+      exercises: original.exercises.map((e) => ({
+        id: generateId(),
+        name: e.name,
+        sets: e.sets.map((st) => ({
+          id: generateId(),
+          weight: st.weight,
+          reps: st.reps,
+          completed: false,
+        })),
+      })),
+      createdAt: now(),
+      updatedAt: now(),
+    }
+    // Insert immediately after the original
+    set((s) => {
+      const idx = s.workouts.findIndex((w) => w.id === id)
+      const updated = [...s.workouts]
+      updated.splice(idx + 1, 0, duplicate)
+      return { workouts: updated }
+    })
   },
 
   deleteWorkout(id) {
