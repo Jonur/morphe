@@ -23,22 +23,22 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
   const menuItems = [
     {
       label: 'View workout',
-      icon: <ViewIcon size={20} />,
+      icon: <ViewIcon size={16} />,
       onClick: () => navigate(`/workout/${workout.id}`),
     },
     {
       label: 'Edit workout',
-      icon: <EditIcon size={20} />,
+      icon: <EditIcon size={16} />,
       onClick: () => navigate(`/workout/${workout.id}/edit`),
     },
     {
       label: 'Duplicate',
-      icon: <DuplicateIcon size={20} />,
+      icon: <DuplicateIcon size={16} />,
       onClick: () => duplicateWorkout(workout.id),
     },
     {
       label: 'Delete',
-      icon: <DeleteIcon size={20} />,
+      icon: <DeleteIcon size={16} />,
       onClick: () => setDeleteOpen(true),
       danger: true,
     },

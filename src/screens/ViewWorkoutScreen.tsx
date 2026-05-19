@@ -33,17 +33,17 @@ export function ViewWorkoutScreen() {
   const menuItems = [
     {
       label: 'Edit workout',
-      icon: <EditIcon size={20} />,
+      icon: <EditIcon size={16} />,
       onClick: () => navigate(`/workout/${workout.id}/edit`),
     },
     {
       label: 'Duplicate',
-      icon: <DuplicateIcon size={20} />,
+      icon: <DuplicateIcon size={16} />,
       onClick: () => { duplicateWorkout(workout.id); navigate('/home') },
     },
     {
       label: 'Delete',
-      icon: <DeleteIcon size={20} />,
+      icon: <DeleteIcon size={16} />,
       onClick: () => setDeleteOpen(true),
       danger: true,
     },

@@ -42,7 +42,7 @@ export function ExerciseCard({
   const menuItems = [
     {
       label: 'Duplicate exercise',
-      icon: <DuplicateIcon size={20} />,
+      icon: <DuplicateIcon size={16} />,
       onClick: onDuplicate,
     },
   ]
