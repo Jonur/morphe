@@ -213,19 +213,17 @@ export function DeleteIcon({ size = 16, className = '', ...props }: IconProps) {
  */
 export function DuplicateIcon({ size = 16, className = '', ...props }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" className={className} {...props}>
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" overflow="visible" className={className} {...props}>
       {/* Front page — solid rectangle, bottom-left */}
       <path d="M2.67 5.33 L13.33 5.33 L13.33 16 L2.67 16 Z" stroke="currentColor" strokeWidth="1.5" />
       {/* Back page top edge — two dashes */}
-      <path d="M4.67 2.67 L8 2.67"    stroke="currentColor" strokeWidth="1.5" />
+      <path d="M4.67 2.67 L8 2.67"     stroke="currentColor" strokeWidth="1.5" />
       <path d="M9.33 2.67 L12.67 2.67" stroke="currentColor" strokeWidth="1.5" />
-      {/* Back page top-right corner — solid.
-          Right edge capped at 15.25 (= 16 − strokeWidth/2) so the 1.5px
-          stroke sits fully inside the 16×16 viewBox without clipping. */}
-      <path d="M14 2.67 L15.25 2.67 L15.25 4.67" stroke="currentColor" strokeWidth="1.5" />
+      {/* Back page top-right corner — solid */}
+      <path d="M14 2.67 L16 2.67 L16 4.67" stroke="currentColor" strokeWidth="1.5" />
       {/* Back page right edge — two dashes */}
-      <path d="M15.25 6 L15.25 9.33"   stroke="currentColor" strokeWidth="1.5" />
-      <path d="M15.25 10.67 L15.25 14" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M16 6 L16 9.33"   stroke="currentColor" strokeWidth="1.5" />
+      <path d="M16 10.67 L16 14" stroke="currentColor" strokeWidth="1.5" />
     </svg>
   )
 }
