@@ -19,6 +19,12 @@
   }
 
   html {
+    /* Lock the rem base to 16px so Tailwind spacing is identical on every
+       device regardless of the browser or OS font-size / display-size setting.
+       Without this, Android's "Display size" or Chrome's "Text scaling"
+       inflate the root font-size (e.g. to 20px), making every rem-based
+       value larger than designed. */
+    font-size: 16px;
     background: linear-gradient(180deg, #E8F2F2 0%, #EFF1EE 65%, #F6F1EB 100%);
     background-attachment: fixed;
   }
