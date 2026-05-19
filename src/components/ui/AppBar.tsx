@@ -18,7 +18,7 @@ type AppBarProps = AppBarHomeProps | AppBarNavProps
 export function AppBar(props: AppBarProps) {
   if (props.mode === 'home') {
     return (
-      <header className="flex items-center px-4 pt-4 pb-2" role="banner">
+      <header className="flex items-center px-4 pt-6 pb-2" role="banner">
         <h1
           className="font-display text-seaweed leading-none select-none"
           style={{ fontSize: 28, letterSpacing: '0.56px' }}
@@ -34,7 +34,7 @@ export function AppBar(props: AppBarProps) {
 
   return (
     <header
-      className="relative flex items-center justify-between px-4 pt-4 py-2"
+      className="relative flex items-center justify-between px-4 pt-6 py-2"
       role="banner"
     >
       <motion.button
