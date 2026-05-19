@@ -21,6 +21,9 @@ interface WorkoutStore {
     exercises: { id?: string; name: string; sets: WorkoutSet[] }[]
   ) => void
 
+  // Exercise mutations
+  duplicateExercise: (workoutId: string, exerciseId: string) => void
+
   // Set mutations (used during active workout / view)
   addSet: (workoutId: string, exerciseId: string) => void
   removeLastSet: (workoutId: string, exerciseId: string) => void
@@ -76,6 +79,33 @@ export const useWorkoutStore = create<WorkoutStore>((set, get) => ({
           })),
           updatedAt: now(),
         }
+      }),
+    }))
+  },
+
+  duplicateExercise(workoutId, exerciseId) {
+    set((s) => ({
+      workouts: s.workouts.map((w) => {
+        if (w.id !== workoutId) return w
+        const idx = w.exercises.findIndex((e) => e.id === exerciseId)
+        if (idx === -1) return w
+        const original = w.exercises[idx]
+        const duplicate: Exercise = {
+          id: generateId(),
+          name: original.name,
+          sets: original.sets.map((st) => ({
+            id: generateId(),
+            weight: st.weight,
+            reps: st.reps,
+            completed: false,
+          })),
+        }
+        const exercises = [
+          ...w.exercises.slice(0, idx + 1),
+          duplicate,
+          ...w.exercises.slice(idx + 1),
+        ]
+        return { ...w, exercises, updatedAt: now() }
       }),
     }))
   },

@@ -12,7 +12,7 @@ import { EditIcon, DeleteIcon } from '../components/ui/icons'
 export function ViewWorkoutScreen() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { workouts, deleteWorkout, addSet, removeLastSet, updateSet, toggleSetComplete } =
+  const { workouts, deleteWorkout, addSet, removeLastSet, updateSet, toggleSetComplete, duplicateExercise } =
     useWorkoutStore()
 
   const workout = workouts.find((w) => w.id === id)
@@ -78,6 +78,7 @@ export function ViewWorkoutScreen() {
                     updateSet(workout.id, exercise.id, setId, field, value)
                   }
                   onToggleSet={(setId) => toggleSetComplete(workout.id, exercise.id, setId)}
+                  onDuplicate={() => duplicateExercise(workout.id, exercise.id)}
                 />
               </motion.div>
             ))}

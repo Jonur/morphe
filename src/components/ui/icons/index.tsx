@@ -205,6 +205,23 @@ export function DeleteIcon({ size = 16, className = '', ...props }: IconProps) {
   )
 }
 
+/**
+ * Duplicate / copy — 16×16.
+ * Two overlapping squares offset 4px diagonally.
+ * Front page (top-right) drawn fully; back page (bottom-left) shows only
+ * the L-shaped edges not hidden behind the front.
+ */
+export function DuplicateIcon({ size = 16, className = '', ...props }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" className={className} {...props}>
+      {/* Back page — visible L-shaped edges */}
+      <path d="M5 5 L1 5 L1 15 L11 15 L11 11" stroke="currentColor" strokeWidth="1.5" />
+      {/* Front page — full rectangle */}
+      <path d="M5 1 L15 1 L15 11 L5 11 Z" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  )
+}
+
 // ─── Stepper controls ────────────────────────────────────────────────────────
 
 /**

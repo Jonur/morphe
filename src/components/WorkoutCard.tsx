@@ -47,7 +47,7 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8, scale: 0.97 }}
         transition={{ duration: 0.25 }}
-        className="bg-white rounded-card border border-frost px-5 py-4 flex items-center justify-between"
+        className="bg-white rounded-card border border-frost px-4 py-4 flex items-center justify-between"
         aria-label={`Workout: ${workout.name}`}
       >
         <button

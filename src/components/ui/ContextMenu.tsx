@@ -14,9 +14,11 @@ interface ContextMenuProps {
   onClose: () => void
   items: ContextMenuItem[]
   ariaLabel?: string
+  /** Override fixed position. Defaults to right-4 top-[88px] (below AppBar). */
+  position?: { top: number; right: number }
 }
 
-export function ContextMenu({ open, onClose, items, ariaLabel }: ContextMenuProps) {
+export function ContextMenu({ open, onClose, items, ariaLabel, position }: ContextMenuProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -59,8 +61,12 @@ export function ContextMenu({ open, onClose, items, ariaLabel }: ContextMenuProp
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.96 }}
             transition={{ type: 'spring', stiffness: 400, damping: 28 }}
-            className="fixed right-4 top-[88px] z-50 w-52 rounded-2xl bg-white overflow-hidden"
-            style={{ boxShadow: '0px 4px 12px 0px rgba(40, 68, 67, 0.08)' }}
+            className="fixed z-50 w-52 rounded-2xl bg-white overflow-hidden"
+            style={{
+              top: position?.top ?? 88,
+              right: position?.right ?? 16,
+              boxShadow: '0px 4px 12px 0px rgba(40, 68, 67, 0.08)',
+            }}
           >
             {items.map((item, i) => (
               <motion.button
@@ -72,7 +78,7 @@ export function ContextMenu({ open, onClose, items, ariaLabel }: ContextMenuProp
                   item.onClick()
                 }}
                 className={[
-                  'w-full flex items-center gap-3 px-5 py-4 text-base font-normal text-left',
+                  'w-full flex items-center gap-3 px-4 py-4 text-base font-normal text-left',
                   'bg-white transition-colors duration-100 hover:bg-frost active:bg-dew',
                   i < items.length - 1 ? 'border-b border-frost' : '',
                   item.danger ? 'text-coral' : 'text-seaweed',
