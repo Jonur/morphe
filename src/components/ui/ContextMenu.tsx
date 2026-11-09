@@ -87,7 +87,7 @@ export function ContextMenu({ open, onClose, items, ariaLabel, position }: Conte
                   .join(' ')}
               >
                 {item.icon && (
-                  <span className="flex-shrink-0 text-current" aria-hidden="true">
+                  <span className="shrink-0 text-current" aria-hidden="true">
                     {item.icon}
                   </span>
                 )}

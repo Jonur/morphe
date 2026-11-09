@@ -25,7 +25,7 @@ export function ViewWorkoutScreen() {
 
   if (!workout) {
     return (
-      <div className="flex flex-col min-h-[100dvh] items-center justify-center gap-4 px-4">
+      <div className="flex flex-col min-h-dvh items-center justify-center gap-4 px-4">
         <p className="text-base font-light text-patina">Workout not found.</p>
         <Button variant="ghost" onClick={() => navigate('/home')}>
           Go home
@@ -60,7 +60,7 @@ export function ViewWorkoutScreen() {
         animate={{ x: 0, opacity: 1 }}
         exit={exitBack ? { x: '100%', opacity: 0 } : { x: '-30%', opacity: 0 }}
         transition={{ duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
-        className="flex flex-col min-h-[100dvh]"
+        className="flex flex-col min-h-dvh"
       >
         <AppBar
           mode="nav"
@@ -126,7 +126,7 @@ export function ViewWorkoutScreen() {
           <div className="flex gap-3 w-full">
             <button
               onClick={() => setDeleteOpen(false)}
-              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-obsidian border border-sage bg-transparent hover:bg-frost transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-obsidian border border-sage bg-transparent hover:bg-frost transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-patina"
               style={{ width: 157 }}
             >
               Cancel
@@ -136,7 +136,7 @@ export function ViewWorkoutScreen() {
                 deleteWorkout(workout.id)
                 navigate('/home', { replace: true })
               }}
-              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-white bg-coral hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral"
+              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-white bg-coral hover:opacity-90 transition-opacity focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-coral"
               style={{ width: 152 }}
             >
               Delete

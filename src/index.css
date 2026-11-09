@@ -1,13 +1,91 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@font-face {
-  font-family: 'Momo Trust Display';
-  src: url('/fonts/MomoTrustDisplay-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+@theme {
+  --color-obsidian: #1f2726;
+  --color-seaweed: #284443;
+  --color-patina: #4b7978;
+  --color-sage: #79a3a1;
+  --color-mist: #a8cac8;
+  --color-dew: #d2e4e4;
+  --color-frost: #e8f2f2;
+  --color-haze: #edf1f0;
+  --color-coral: #ea3c5e;
+  --color-rose: #f65776;
+  --color-peach: #ffa49a;
+  --color-sand: #f6f1eb;
+  --color-ivory: #faf8f0;
+
+  --font-display: 'Momo Trust Display', Georgia, serif;
+  --font-sans: Lexend, system-ui, sans-serif;
+
+  --radius-pill: 9999px;
+  --radius-card: 20px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+
+  --shadow-soft: 0 2px 16px 0 rgba(31, 39, 38, 0.06);
+  --shadow-modal: 0 8px 40px 0 rgba(31, 39, 38, 0.14);
+
+  --text-2xs: 10px;
+  --text-2xs--line-height: 14px;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility gradient-bg {
+  background: linear-gradient(180deg, #e8f2f2 0%, #eff1ee 65%, #f6f1eb 100%);
+}
+
+@utility splash-bg {
+  /* Splash screen — inverted, more saturated gradient */
+  background: linear-gradient(180deg, #f6f1eb 0%, #cfddd9 35%, #a8cac8 100%);
+}
+
+@utility input-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(218, 234, 234, 0.35) 0%,
+    rgba(246, 241, 235, 0.35) 100%
+  );
+}
+
+@layer utilities {
+  @font-face {
+    font-family: 'Momo Trust Display';
+    src: url('/fonts/MomoTrustDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
 }
 
 @layer base {
@@ -52,33 +130,5 @@
   textarea:focus-visible {
     outline: 2px solid #D2E4E4;
     outline-offset: 0;
-  }
-}
-
-@layer utilities {
-  .safe-bottom {
-    padding-bottom: env(safe-area-inset-bottom, 16px);
-  }
-
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-
-  .gradient-bg {
-    background: linear-gradient(180deg, #E8F2F2 0%, #EFF1EE 65%, #F6F1EB 100%);
-  }
-
-  /* Splash screen — inverted, more saturated gradient */
-  .splash-bg {
-    background: linear-gradient(180deg, #F6F1EB 0%, #CFDDD9 35%, #A8CAC8 100%);
-  }
-
-  .input-gradient {
-    background: linear-gradient(135deg, rgba(218, 234, 234, 0.35) 0%, rgba(246, 241, 235, 0.35) 100%);
   }
 }

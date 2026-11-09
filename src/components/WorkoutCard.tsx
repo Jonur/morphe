@@ -57,7 +57,7 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
       >
         <button
           onClick={() => navigate(`/workout/${workout.id}`)}
-          className="flex-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina rounded-lg"
+          className="flex-1 text-left focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-patina rounded-lg"
           aria-label={`View ${workout.name}`}
         >
           <h3 className="text-base font-normal text-seaweed leading-tight">{workout.name}</h3>
@@ -76,7 +76,7 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
           aria-label={`Options for ${workout.name}`}
           aria-expanded={menuOpen}
           aria-haspopup="menu"
-          className="w-8 h-8 flex items-center justify-center rounded-full -mr-0.5 text-sage hover:text-seaweed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina transition-colors"
+          className="w-8 h-8 flex items-center justify-center rounded-full -mr-0.5 text-sage hover:text-seaweed focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-patina transition-colors"
         >
           <VerticalMenuIcon size={16} aria-hidden="true" />
         </motion.button>
@@ -115,7 +115,7 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
             <button
               onClick={() => setDeleteOpen(false)}
               aria-label="Cancel delete"
-              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-obsidian border border-sage bg-transparent hover:bg-frost transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-obsidian border border-sage bg-transparent hover:bg-frost transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-patina"
               style={{ width: 157 }}
             >
               Cancel
@@ -126,7 +126,7 @@ export function WorkoutCard({ workout }: WorkoutCardProps) {
                 setDeleteOpen(false)
               }}
               aria-label={`Confirm delete ${workout.name}`}
-              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-white bg-coral hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral"
+              className="flex items-center justify-center rounded-pill py-4 text-base font-medium text-white bg-coral hover:opacity-90 transition-opacity focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-coral"
               style={{ width: 152 }}
             >
               Delete

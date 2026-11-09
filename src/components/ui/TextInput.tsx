@@ -31,8 +31,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
             'w-full rounded-2xl py-4 px-4',
             onClear ? 'pr-10' : '',
             'text-base font-light text-obsidian placeholder:text-sage',
-            'bg-gradient-to-r from-[#f9fafa] to-[#f4f7f7]',
-            'border transition-colors duration-200 outline-none',
+            'bg-linear-to-r from-[#f9fafa] to-[#f4f7f7]',
+            'border transition-colors duration-200 outline-hidden',
             error ? 'border-coral' : 'border-dew focus:border-mist',
             className,
           ]
@@ -51,7 +51,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
               type="button"
               onClick={onClear}
               aria-label="Clear input"
-              className="absolute inset-y-0 right-0 flex items-center pr-4 text-sage hover:text-patina transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
+              className="absolute inset-y-0 right-0 flex items-center pr-4 text-sage hover:text-patina transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-patina"
             >
               <ClearIcon size={10} aria-hidden="true" />
             </motion.button>

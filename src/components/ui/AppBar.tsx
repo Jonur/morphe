@@ -41,7 +41,7 @@ export function AppBar(props: AppBarProps) {
         whileTap={{ scale: 0.88 }}
         onClick={onBack}
         aria-label="Go back"
-        className="flex items-center justify-center w-9 h-9 -ml-1.5 rounded-full text-patina focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+        className="flex items-center justify-center w-9 h-9 -ml-1.5 rounded-full text-patina focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-patina"
       >
         <BackArrowIcon size={24} aria-hidden="true" />
       </motion.button>
@@ -58,7 +58,7 @@ export function AppBar(props: AppBarProps) {
           whileTap={{ scale: 0.88 }}
           onClick={onMenu}
           aria-label="Open menu"
-          className="flex items-center justify-center w-9 h-9 -mr-1.5 rounded-full text-patina focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+          className="flex items-center justify-center w-9 h-9 -mr-1.5 rounded-full text-patina focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-patina"
         >
           <VerticalMenuIcon size={24} aria-hidden="true" />
         </motion.button>
@@ -67,7 +67,7 @@ export function AppBar(props: AppBarProps) {
           whileTap={{ scale: 0.88 }}
           onClick={onClose}
           aria-label="Close and go home"
-          className="flex items-center justify-center w-9 h-9 -mr-1.5 rounded-full text-patina focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+          className="flex items-center justify-center w-9 h-9 -mr-1.5 rounded-full text-patina focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-patina"
         >
           <CloseIcon size={24} aria-hidden="true" />
         </motion.button>

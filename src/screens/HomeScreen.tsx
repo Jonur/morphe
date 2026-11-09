@@ -28,7 +28,7 @@ export function HomeScreen() {
       animate={{ x: 0, opacity: 1 }}
       exit={exitInstant ? { opacity: 1 } : { x: '-30%', opacity: 0 }}
       transition={exitInstant ? { duration: 0 } : { duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
-      className="flex flex-col min-h-[100dvh]"
+      className="flex flex-col min-h-dvh"
     >
       <AppBar mode="home" />
 
@@ -65,7 +65,7 @@ export function HomeScreen() {
           whileTap={{ scale: 0.97 }}
           onClick={handleCreate}
           aria-label="Create new workout"
-          className="w-full mt-2 flex items-center justify-center gap-2 rounded-card py-4 text-base font-medium text-patina hover:bg-frost transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina"
+          className="w-full mt-2 flex items-center justify-center gap-2 rounded-card py-4 text-base font-medium text-patina hover:bg-frost transition-colors duration-150 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-patina"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='20' ry='20' stroke='%2379a3a1' stroke-width='1' stroke-dasharray='4%2c4' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`,
           }}

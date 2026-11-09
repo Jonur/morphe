@@ -64,7 +64,7 @@ export function ExerciseCard({
             aria-label={`Options for ${exercise.name}`}
             aria-expanded={menuOpen}
             aria-haspopup="menu"
-            className="flex items-center justify-center w-7 h-7 -mr-0.5 rounded-full text-sage hover:text-seaweed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina transition-colors"
+            className="flex items-center justify-center w-7 h-7 -mr-0.5 rounded-full text-sage hover:text-seaweed focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-patina transition-colors"
           >
             <VerticalMenuIcon size={16} aria-hidden="true" />
           </motion.button>
@@ -123,7 +123,7 @@ export function ExerciseCard({
             onClick={onRemoveSet}
             disabled={exercise.sets.length <= 1}
             aria-label={`Remove last set from ${exercise.name}`}
-            className="flex items-center justify-center bg-white rounded-full p-[2px] text-sage disabled:opacity-30 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
+            className="flex items-center justify-center bg-white rounded-full p-[2px] text-sage disabled:opacity-30 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-patina"
           >
             <SubtractIcon size={16} aria-hidden="true" />
           </motion.button>
@@ -142,7 +142,7 @@ export function ExerciseCard({
             type="button"
             onClick={onAddSet}
             aria-label={`Add set to ${exercise.name}`}
-            className="flex items-center justify-center bg-white rounded-full p-[2px] text-sage focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
+            className="flex items-center justify-center bg-white rounded-full p-[2px] text-sage focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-patina"
           >
             <AddIcon size={16} aria-hidden="true" />
           </motion.button>

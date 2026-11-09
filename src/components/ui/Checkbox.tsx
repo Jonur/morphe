@@ -18,7 +18,7 @@ export function Checkbox({ checked, onChange, label, size = 20 }: CheckboxProps)
       aria-checked={checked}
       aria-label={label ?? (checked ? 'Mark incomplete' : 'Mark complete')}
       onClick={onChange}
-      className="flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina rounded-full"
+      className="flex items-center justify-center focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-patina rounded-full"
       style={{ width: size, height: size }}
     >
       <svg

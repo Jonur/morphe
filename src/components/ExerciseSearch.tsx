@@ -69,8 +69,8 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
           aria-autocomplete="list"
           className={[
             'w-full pl-10 pr-10 py-4 rounded-2xl text-base font-light text-obsidian placeholder:text-sage',
-            'bg-gradient-to-r from-[#f9fafa] to-[#f4f7f7]',
-            'border transition-colors duration-200 outline-none',
+            'bg-linear-to-r from-[#f9fafa] to-[#f4f7f7]',
+            'border transition-colors duration-200 outline-hidden',
             open ? 'border-mist' : 'border-dew',
           ].join(' ')}
         />
@@ -86,7 +86,7 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
               type="button"
               onClick={handleClear}
               aria-label="Clear search"
-              className="absolute inset-y-0 right-0 flex items-center pr-4 text-sage hover:text-patina transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
+              className="absolute inset-y-0 right-0 flex items-center pr-4 text-sage hover:text-patina transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-patina"
             >
               <ClearIcon size={10} aria-hidden="true" />
             </motion.button>
@@ -135,7 +135,7 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
                     {isSelected && (
                       <CheckCircleIcon
                         size={20}
-                        className="text-coral flex-shrink-0"
+                        className="text-coral shrink-0"
                         aria-hidden="true"
                       />
                     )}
@@ -175,7 +175,7 @@ export function ExerciseSearch({ selected, onToggle }: ExerciseSearchProps) {
                       type="button"
                       onClick={() => onToggle(name)}
                       aria-label={`Remove ${name}`}
-                      className="flex items-center justify-center text-sage hover:text-coral transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina rounded-full"
+                      className="flex items-center justify-center text-sage hover:text-coral transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-patina rounded-full"
                     >
                       <ClearIcon size={10} aria-hidden="true" />
                     </button>

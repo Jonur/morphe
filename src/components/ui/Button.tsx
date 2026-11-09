@@ -35,7 +35,7 @@ export function Button({
         'inline-flex items-center justify-center gap-2',
         'rounded-pill px-4 py-4 text-base',
         'transition-colors duration-150',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-patina focus-visible:ring-offset-1',
+        'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-patina focus-visible:ring-offset-1',
         'cursor-pointer disabled:cursor-not-allowed',
         variantStyles[variant],
         fullWidth ? 'w-full' : '',

@@ -58,14 +58,14 @@ export function SetField({
   return (
     <div className="flex items-center gap-1.5">
       {/* Stepper card */}
-      <div className="flex items-center gap-1.5 p-2 bg-gradient-to-b from-[#f9fafa] to-[#f4f7f7] border border-frost rounded-xl">
+      <div className="flex items-center gap-1.5 p-2 bg-linear-to-b from-[#f9fafa] to-[#f4f7f7] border border-frost rounded-xl">
         <motion.button
           whileTap={{ scale: 0.82 }}
           transition={{ duration: 0.1 }}
           type="button"
           onClick={decrement}
           aria-label={`Decrease ${label}`}
-          className="flex items-center justify-center bg-white rounded-full p-[2px] text-sage focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
+          className="flex items-center justify-center bg-white rounded-full p-[2px] text-sage focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-patina"
         >
           <SubtractIcon size={16} aria-hidden="true" />
         </motion.button>
@@ -79,7 +79,7 @@ export function SetField({
           onBlur={handleBlur}
           onFocus={(e) => e.target.select()}
           aria-label={label}
-          className="w-[30px] text-center text-base font-normal text-seaweed bg-transparent outline-none border-none caret-patina"
+          className="w-[30px] text-center text-base font-normal text-seaweed bg-transparent outline-hidden border-none caret-patina"
         />
 
         <motion.button
@@ -88,7 +88,7 @@ export function SetField({
           type="button"
           onClick={increment}
           aria-label={`Increase ${label}`}
-          className="flex items-center justify-center bg-white rounded-full p-[2px] text-sage focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-patina"
+          className="flex items-center justify-center bg-white rounded-full p-[2px] text-sage focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-patina"
         >
           <AddIcon size={16} aria-hidden="true" />
         </motion.button>

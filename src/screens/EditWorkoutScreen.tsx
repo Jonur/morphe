@@ -74,7 +74,7 @@ export function EditWorkoutScreen() {
       animate={{ x: 0, opacity: 1 }}
       exit={isClosing ? { opacity: 0 } : exitBack ? { x: '100%', opacity: 0 } : { x: '-30%', opacity: 0 }}
       transition={isClosing ? { duration: 0 } : { duration: 0.3, ease: [0.32, 0, 0.67, 0] }}
-      className="flex flex-col h-[100dvh]"
+      className="flex flex-col h-dvh"
     >
       <AppBar
           mode="nav"
